@@ -32,6 +32,7 @@
     },
     "extends": [
       "plugin:vue/vue3-essential",
+      "plugin:vue/vue3-strongly-recommended",
       "eslint:recommended",
       "@vue/prettier"
     ],
@@ -39,6 +40,11 @@
       "parser": "babel-eslint"
     },
     "rules": {}
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "browserslist": [
     "> 1%",
