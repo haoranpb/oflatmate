@@ -29,22 +29,6 @@
     "prettier": "^1.19.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "plugin:vue/vue3-strongly-recommended",
-      "eslint:recommended",
-      "@vue/prettier"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
   "prettier": {
     "semi": false,
     "singleQuote": true,
