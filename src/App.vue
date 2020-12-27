@@ -1,30 +1,15 @@
 <template>
-  <div id="nav" class="bg-red-500">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="flex flex-col h-screen bg-white">
+    <the-heading class="h-16 container mx-auto flex items-center border-b" />
+    <router-view class="flex flex-grow container m-auto mt-2" />
   </div>
   <router-view />
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import TheHeading from '@/components/TheHeading.vue'
 
-#nav {
-  padding: 30px;
+export default {
+  components: { TheHeading },
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
