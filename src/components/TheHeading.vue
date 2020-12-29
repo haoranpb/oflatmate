@@ -7,7 +7,7 @@
     <!-- TODO: seperate into a dedicate component with responsive design -->
     <div class="flex space-x-6">
       <h2 class="text-lg text-gray-400 font-medium hover:text-gray-500">
-        <router-link to="/auth">Sign In/Up</router-link>
+        <router-link to="/signin">Sign In/Up</router-link>
       </h2>
       <h2 class="text-lg text-gray-400 font-medium hover:text-gray-500">
         <!-- active status: text-gray-600 -->
