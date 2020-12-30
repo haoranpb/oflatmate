@@ -12,7 +12,8 @@
     "lint": "vue-cli-service lint",
     "start": "NODE_ENV=production node server/index.js",
     "start:dev": "NODE_ENV=development DEBUG=flat:* node server/index.js",
-    "log": "heroku logs --app open-flatmate --tail"
+    "heroku:log": "heroku logs --app open-flatmate --tail",
+    "heroku:db": "heroku pg:push flatmate DATABASE_URL --app open-flatmate"
   },
   "dependencies": {
     "axios": "^0.21.1",
