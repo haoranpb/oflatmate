@@ -11,7 +11,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "NODE_ENV=production yarn build && node server/index.js",
-    "start:dev": "NODE_ENV=development DEBUG=flat:* node server/index.js"
+    "log": "heroku logs --app open-flatmate --tail"
   },
   "dependencies": {
     "axios": "^0.21.1",
