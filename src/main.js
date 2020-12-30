@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const app = createApp(App)
 app.config.globalProperties.$http = axios.create({
-  baseURL: process.env.VUE_APP_API_URL,
+  baseURL: process.env.VUE_APP_API_URL || '',
   withCredentials: true, // should this be set per request?
 })
 app.use(router).mount('#app')
