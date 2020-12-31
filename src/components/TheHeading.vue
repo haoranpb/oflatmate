@@ -8,12 +8,8 @@
     <div class="flex space-x-6">
       <h2 class="text-lg text-gray-400 font-medium hover:text-gray-500">
         <router-link to="/signin">Sign In/Up</router-link>
-      </h2>
-      <h2 class="text-lg text-gray-400 font-medium hover:text-gray-500">
         <!-- active status: text-gray-600 -->
-        <router-link to="/about">About</router-link>
       </h2>
-
       <!-- TODO: change url after publish -->
       <a
         href="https://github.com/ludanxer"
