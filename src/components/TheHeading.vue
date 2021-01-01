@@ -10,14 +10,17 @@
         <router-link to="/signin">Sign In/Up</router-link>
         <!-- active status: text-gray-600 -->
       </h2>
-      <!-- TODO: change url after publish -->
-      <a
-        href="https://github.com/ludanxer"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <outbound-link href="https://github.com/ludanxer/flatmate">
         <i class="fab fa-github fa-lg text-gray-400 hover:text-gray-500"></i>
-      </a>
+      </outbound-link>
     </div>
   </div>
 </template>
+
+<script>
+import OutboundLink from '@/components/OutboundLink.vue'
+
+export default {
+  components: { OutboundLink },
+}
+</script>
