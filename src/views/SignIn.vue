@@ -83,9 +83,12 @@ export default {
           console.log(response.data)
         })
         .catch((error) => {
-          console.log(error.response)
-          self.errorMessage = error.response.data
-          self.isError = true
+          if (error.response.status == 401) {
+            self.errorMessage = error.response.data
+            self.isError = true
+          } else {
+            self.$router.push('/error')
+          }
         })
     },
   },

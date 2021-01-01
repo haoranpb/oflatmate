@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy
 const crypto = require('crypto')
 const debug = require('debug')('flat:pass')
 const db = require('./db')
+const QueryResultError = require('pg-promise').errors.QueryResultError
 
 passport.use(
   new LocalStrategy(
@@ -23,8 +24,12 @@ passport.use(
           }
         })
         .catch((err) => {
-          debug('Log In Email not Found:', err)
-          return done(null, false, { message: 'Email not found' })
+          if (err instanceof QueryResultError) {
+            debug('Log In Email not Found:', err)
+            return done(null, false, { message: 'Email not found' })
+          } else {
+            return done(err)
+          }
         })
     }
   )
