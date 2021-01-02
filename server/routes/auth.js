@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.post('/signin', function (req, res, next) {
   pass.authenticate('local', function (err, user, info) {
-    debug(info) // TODO: can this be prettier?
+    // TODO: can this function be prettier?
     if (err) {
       return next(err)
     }
