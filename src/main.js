@@ -2,11 +2,22 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router.js'
 import 'tailwindcss/tailwind.css'
-import axios from 'axios'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
-const app = createApp(App)
-app.config.globalProperties.$http = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || '',
-  withCredentials: true, // should this be set per request?
-})
-app.use(router).mount('#app')
+const app = createApp(App).use(router)
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyAnerucWUMP7sCjJpxsPzkfG51kvWSw84Y',
+  authDomain: 'flatmate-3a1eb.firebaseapp.com',
+  projectId: 'flatmate-3a1eb',
+  storageBucket: 'flatmate-3a1eb.appspot.com',
+  messagingSenderId: '334498550539',
+  appId: '1:334498550539:web:b503b22c5f1fbe46c7c80e',
+}
+firebase.initializeApp(firebaseConfig)
+
+app.config.globalProperties.$firebase = firebase
+router.$auth = firebase.auth()
+
+app.mount('#app')

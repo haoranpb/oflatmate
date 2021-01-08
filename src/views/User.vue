@@ -1,29 +1,22 @@
 <template>
   <div id="user">
-    <p>Welcome {{ username }}</p>
+    <p>Welcome {{ user.displayName }}</p>
   </div>
 </template>
 
 <script>
-// TODO: expressjs redirect
 export default {
   data() {
     return {
-      username: '',
+      user: null,
     }
   },
   mounted() {
     const self = this
 
-    this.$http
-      .get('/user/info')
-      .then((response) => {
-        self.username = response.data.username
-        console.log(response.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    this.$firebase.auth().onAuthStateChanged((user) => {
+      self.user = user
+    })
   },
 }
 </script>
