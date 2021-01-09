@@ -8,7 +8,14 @@
       </div>
     </div>
     <div>
-      <button @click="deleteAccount">Delete Account</button>
+      <h2 class="text-red-600 font-bold text-xl">Delete Account</h2>
+      <p>Once you delete your account, there is no going back.</p>
+      <button
+        class="text-red-600 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:text-sm"
+        @click="deleteAccount"
+      >
+        Delete Account
+      </button>
     </div>
   </div>
 </template>
