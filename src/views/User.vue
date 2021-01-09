@@ -1,8 +1,15 @@
 <template>
-  <div id="user">
-    <p>Welcome {{ user ? user.displayName : '' }}</p>
-    <button @click="signOut">Sign Out</button>
-    <button @click="deleteAccount">Delete Account</button>
+  <div id="user" class="flex-col">
+    <div v-if="user" class="flex flex-row w-full m-10 space-x-10">
+      <img class="flex rounded-full w-18 h-18" :src="user.photoURL" />
+      <div class="mt-4">
+        <h2 class="text-2xl font-medium">{{ user.displayName }}</h2>
+        <p class="text-gray-600">{{ user.email }}</p>
+      </div>
+    </div>
+    <div>
+      <button @click="deleteAccount">Delete Account</button>
+    </div>
   </div>
 </template>
 
@@ -28,10 +35,6 @@ export default {
       })
   },
   methods: {
-    signOut() {
-      this.$firebase.auth().signOut()
-      this.$router.push('/authentication')
-    },
     deleteAccount() {
       const self = this
       // TODO: To delete a user, the user must have signed in recently.
