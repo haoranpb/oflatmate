@@ -13,7 +13,7 @@ import HeadHome from '@/components/HeadHome.vue'
 import HeadUser from '@/components/HeadUser.vue'
 
 export default {
-  components: { TheHeading, HeadHome },
+  components: { TheHeading },
   computed: {
     currentComponent() {
       return this.$route.name == 'home' ? HeadHome : HeadUser
