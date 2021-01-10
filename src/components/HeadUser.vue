@@ -11,7 +11,7 @@
       role="menu"
       ref="userMenu"
       v-show="open"
-      @click="closeMenu"
+      @click="open = false"
     >
       <router-link
         to="/user"
@@ -61,9 +61,6 @@ export default {
     signOut() {
       this.$firebase.auth().signOut()
       this.$router.push('/authentication')
-    },
-    closeMenu() {
-      this.open = false
     },
   },
 }
