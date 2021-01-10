@@ -3,6 +3,7 @@ import { getCurrentUser } from '@/utils'
 import Home from '@/views/Home.vue'
 import User from '@/views/User.vue'
 import About from '@/views/About.vue'
+import Flat from '@/views/Flat.vue'
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
       {
         path: 'user',
         component: User,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'flat',
+        component: Flat,
         meta: { requiresAuth: true },
       },
     ],
