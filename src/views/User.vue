@@ -12,24 +12,47 @@
       <p>Once you delete your account, there is no going back.</p>
       <f-button
         class="text-red-600 border-gray-300 px-4 py-2 bg-white text-base font-medium hover:bg-gray-50 sm:w-auto sm:text-sm"
-        @click="deleteAccount"
+        @click="deletePop = true"
         >Delete your account</f-button
       >
     </div>
+    <warn-pop v-if="deletePop">
+      <template v-slot:title>Deactivate account</template>
+      <template v-slot:description>
+        Are you sure you want to deactivate your account? All of your data will
+        be permanently removed. This action cannot be undone.
+      </template>
+      <template v-slot:action>
+        <f-button
+          @click="conformDelete"
+          class="w-full border-transparent px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm"
+          >Deactivate
+        </f-button>
+      </template>
+      <template v-slot:close>
+        <f-button
+          @click="deletePop = false"
+          class="mt-3 w-full border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          >Cancel
+        </f-button>
+      </template>
+    </warn-pop>
   </div>
 </template>
 
 <script>
 import { getCurrentUser } from '@/utils'
 import FButton from '@/components/FButton.vue'
+import WarnPop from '@/components/WarnPop.vue'
 
 export default {
   data() {
     return {
       user: null,
+      deletePop: false,
     }
   },
-  components: { FButton },
+  components: { FButton, WarnPop },
   mounted() {
     const self = this
 
@@ -43,7 +66,7 @@ export default {
       })
   },
   methods: {
-    deleteAccount() {
+    conformDelete() {
       const self = this
       // TODO: To delete a user, the user must have signed in recently.
       // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
