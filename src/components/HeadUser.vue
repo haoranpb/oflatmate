@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user" class="ml-3 relative">
+  <div v-if="user" class="ml-3 relative" ref="userMenu">
     <button
       class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
       @click="open = !open"
@@ -9,7 +9,6 @@
     <div
       class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
       role="menu"
-      ref="userMenu"
       v-show="open"
       @click="open = false"
     >
@@ -53,8 +52,8 @@ export default {
     document.removeEventListener('click', this.closeMenu)
   },
   methods: {
-      if (!this.$el.contains(e.target)) {
     closeMenu(e) {
+      if (!this.$refs.userMenu.contains(e.target)) {
         this.open = false
       }
     },
