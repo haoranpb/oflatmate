@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener('click', this.close)
+    document.addEventListener('click', this.closeMenu)
     const self = this
     // need to be refactored
     getCurrentUser(this.$firebase.auth()).then((user) => {
@@ -50,11 +50,11 @@ export default {
     })
   },
   beforeUnmount() {
-    document.removeEventListener('click', this.close)
+    document.removeEventListener('click', this.closeMenu)
   },
   methods: {
-    close(e) {
       if (!this.$el.contains(e.target)) {
+    closeMenu(e) {
         this.open = false
       }
     },
