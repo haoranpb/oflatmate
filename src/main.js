@@ -4,6 +4,7 @@ import router from './router.js'
 import 'tailwindcss/tailwind.css'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
 
 const app = createApp(App).use(router)
 
@@ -20,6 +21,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 app.config.globalProperties.$firebase = firebase
+app.config.globalProperties.$db = firebase.firestore() // easy reference
 app.config.globalProperties.$user = null
 router.app = app
 
