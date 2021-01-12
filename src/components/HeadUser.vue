@@ -59,7 +59,8 @@ export default {
   },
   methods: {
     closeMenu(e) {
-      if (!this.$refs.userMenu.contains(e.target)) {
+      // $refs.userMenu becomes `null` on click signOut
+      if (this.$refs.userMenu && !this.$refs.userMenu.contains(e.target)) {
         this.open = false
       }
     },
