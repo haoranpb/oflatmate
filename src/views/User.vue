@@ -53,13 +53,16 @@ export default {
   components: { FButton, WarnPop },
   methods: {
     conformDelete() {
-      const self = this
-      // TODO: To delete a user, the user must have signed in recently.
-      // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
-      this.$user.delete().then(() => {
-        self.$user = null
-        self.$router.push('/authentication')
-      })
+      this.$user
+        .delete()
+        .then(() => {
+          this.$user = null
+          this.$router.push('/authentication')
+        })
+        .catch(() => {
+          // TODO: To delete a user, the user must have signed in recently.
+          // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
+        })
     },
   },
 }
