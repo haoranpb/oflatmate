@@ -30,6 +30,11 @@ const routes = [
   {
     path: '/authentication',
     component: () => import('@/views/Authentication.vue'),
+    beforeEnter: () => {
+      if (router.app.config.globalProperties.$user) {
+        return '/user'
+      }
+    },
   },
   {
     path: '/error',
