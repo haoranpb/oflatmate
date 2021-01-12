@@ -20,6 +20,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 app.config.globalProperties.$firebase = firebase
-router.$auth = firebase.auth()
+app.config.globalProperties.$user = null
+router.app = app
 
 app.mount('#app')

@@ -4,9 +4,6 @@
 
   It's also wired that after this function returned,
   `currentUser` can still be null
-
-  Alternatively, this function may also be moved into 
-  `signInSuccessWithAuthResult` callback
  */
 function getCurrentUser(auth) {
   return new Promise((resolve, reject) => {

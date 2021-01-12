@@ -5,12 +5,12 @@
   >
     Flats
   </router-link>
-  <div v-if="user" class="ml-3 relative" ref="userMenu">
+  <div v-if="$user" class="ml-3 relative" ref="userMenu">
     <button
       class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
       @click="open = !open"
     >
-      <img class="h-8 w-8 rounded-full" :src="user.photoURL" />
+      <img class="h-8 w-8 rounded-full" :src="$user.photoURL" />
     </button>
     <div
       class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
@@ -37,22 +37,14 @@
 </template>
 
 <script>
-import { getCurrentUser } from '@/utils'
-
 export default {
   data() {
     return {
-      user: null,
       open: false,
     }
   },
   mounted() {
     document.addEventListener('click', this.closeMenu)
-    const self = this
-    // need to be refactored
-    getCurrentUser(this.$firebase.auth()).then((user) => {
-      self.user = user
-    })
   },
   beforeUnmount() {
     document.removeEventListener('click', this.closeMenu)
@@ -65,6 +57,7 @@ export default {
       }
     },
     signOut() {
+      this.$user = null
       this.$firebase.auth().signOut()
       this.$router.push('/authentication')
     },

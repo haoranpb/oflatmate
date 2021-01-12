@@ -47,13 +47,20 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
-  if (to.meta.requiresAuth) {
-    const user = await getCurrentUser(router.$auth)
+  /*
+    Check authentication status before route entering.
+    Also make user always accessible in `this.$user`.
+  */
+  if (to.meta.requiresAuth && !router.app.config.globalProperties.$user) {
+    const user = await getCurrentUser(
+      router.app.config.globalProperties.$firebase.auth()
+    )
     if (!user) {
       return '/authentication'
+    } else {
+      router.app.config.globalProperties.$user = user
     }
   }
-  return true
 })
 
 export default router
