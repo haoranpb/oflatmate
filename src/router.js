@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCurrentUser } from '@/utils'
-import Home from '@/views/Home.vue'
+import Layout from '@/others/Layout.vue'
 import User from '@/views/User.vue'
-import About from '@/views/About.vue'
+import Home from '@/views/Home.vue'
 import Flat from '@/views/Flat.vue'
 
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: Layout,
     children: [
       {
         path: '',
         name: 'home',
-        component: About,
+        component: Home,
       },
       {
         path: 'user',
@@ -38,11 +38,11 @@ const routes = [
   },
   {
     path: '/error',
-    component: () => import('@/views/Error.vue'),
+    component: () => import('@/others/Error.vue'),
   },
   {
     path: '/:pathMatch(.*)',
-    component: () => import('@/views/NotFound.vue'),
+    component: () => import('@/others/NotFound.vue'),
   },
 ]
 
