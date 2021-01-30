@@ -25,4 +25,4 @@ pnpm-debug.log*
 # Firebase
 .firebase
 .firebaserc
-ui-debug.log
+*.log
