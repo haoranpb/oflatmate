@@ -7,7 +7,7 @@
     <p>
       <outbound-link
         href="https://github.com/ludanxer/flatmate/issues/new"
-        class="text-primary"
+        class="text-primary-600"
         >Create an issue</outbound-link
       >
       to tell us what is happening and help us improve flatmate!

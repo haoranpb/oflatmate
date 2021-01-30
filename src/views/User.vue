@@ -10,11 +10,9 @@
     <div>
       <h2 class="text-red-600 font-bold text-xl">Delete Account</h2>
       <p>Once you delete your account, there is no going back.</p>
-      <f-button
-        class="text-red-600 border-gray-300 px-4 py-2 bg-white text-base font-medium hover:bg-gray-50 sm:w-auto sm:text-sm"
-        @click="deletePop = true"
-        >Delete your account</f-button
-      >
+      <vf-button warn class="px-4 py-2" @click="deletePop = true">
+        Delete your account
+      </vf-button>
     </div>
     <warn-pop v-if="deletePop">
       <template v-slot:title>Deactivate account</template>
@@ -23,25 +21,21 @@
         be permanently removed. This action cannot be undone.
       </template>
       <template v-slot:action>
-        <f-button
-          @click="conformDelete"
-          class="w-full border-transparent px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm"
-          >Deactivate
-        </f-button>
+        <vf-button danger @click="conformDelete" class="px-4 py-2 sm:ml-3">
+          Deactivate
+        </vf-button>
       </template>
       <template v-slot:close>
-        <f-button
-          @click="deletePop = false"
-          class="mt-3 w-full border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-          >Cancel
-        </f-button>
+        <vf-button plain @click="deletePop = false" class="px-4 py-2 sm:ml-3">
+          Cancel
+        </vf-button>
       </template>
     </warn-pop>
   </div>
 </template>
 
 <script>
-import FButton from '@/components/FButton.vue'
+import VfButton from '@/components/VfButton.vue'
 import WarnPop from '@/components/WarnPop.vue'
 
 export default {
@@ -50,7 +44,7 @@ export default {
       deletePop: false,
     }
   },
-  components: { FButton, WarnPop },
+  components: { VfButton, WarnPop },
   methods: {
     conformDelete() {
       this.$user
