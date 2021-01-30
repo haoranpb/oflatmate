@@ -19,11 +19,15 @@
         </vf-button>
       </div>
     </div>
+    <template v-if="flats">
+      <flat-item v-for="flat in flats" :key="flat.id" :flat="flat" />
+    </template>
   </div>
 </template>
 
 <script>
 import VfButton from '@/components/VfButton.vue'
+import FlatItem from '@/components/FlatItem.vue'
 
 export default {
   data() {
@@ -31,9 +35,20 @@ export default {
       form: {
         name: '',
       },
+      flats: [],
     }
   },
-  components: { VfButton },
+  components: { VfButton, FlatItem },
+  mounted() {
+    this.$db
+      .collection('flats')
+      .get()
+      .then((querySnapshot) => {
+        this.flats = querySnapshot.docs.map((doc) =>
+          Object.assign({ id: doc.id }, doc.data())
+        )
+      })
+  },
   methods: {
     createFlat() {
       this.$db
@@ -41,6 +56,7 @@ export default {
         .add({
           name: this.form.name,
           creator: this.$user.uid,
+          member: [this.$user.uid],
         })
         .then((docRef) => {
           console.log('Document written: ', docRef)

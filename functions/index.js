@@ -3,8 +3,12 @@ const admin = require('firebase-admin')
 
 admin.initializeApp()
 
-exports.helloWorld = functions
+exports.getUsersInfo = functions
   .region('europe-west1')
-  .https.onRequest((request, response) => {
-    response.send('Hello from Firebase!')
+  .https.onCall((request) => {
+    return admin.auth().getUsers(
+      request.map((item) => {
+        return { uid: item }
+      })
+    )
   })
