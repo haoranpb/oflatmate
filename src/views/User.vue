@@ -1,7 +1,7 @@
 <template>
   <div id="user" class="flex-col">
     <div v-if="$user" class="flex flex-row w-full m-10 space-x-10">
-      <img class="flex rounded-full w-18 h-18" :src="$user.photoURL" />
+      <vf-avatar-item large :link="$user.photoURL" />
       <div class="mt-4">
         <h2 class="text-2xl font-medium">{{ $user.displayName }}</h2>
         <p class="text-gray-600">{{ $user.email }}</p>
@@ -37,6 +37,7 @@
 <script>
 import VfButton from '@/components/VfButton.vue'
 import WarnPop from '@/components/WarnPop.vue'
+import VfAvatarItem from '@/components/VfAvatarItem.vue'
 
 export default {
   data() {
@@ -44,7 +45,7 @@ export default {
       deletePop: false,
     }
   },
-  components: { VfButton, WarnPop },
+  components: { VfButton, WarnPop, VfAvatarItem },
   methods: {
     conformDelete() {
       this.$user
