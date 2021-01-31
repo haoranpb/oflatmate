@@ -15,17 +15,17 @@
       </vf-button>
     </div>
     <warn-pop v-if="deletePop">
-      <template v-slot:title>Deactivate account</template>
-      <template v-slot:description>
+      <template #title>Deactivate account</template>
+      <template #description>
         Are you sure you want to deactivate your account? All of your data will
         be permanently removed. This action cannot be undone.
       </template>
-      <template v-slot:action>
+      <template #action>
         <vf-button danger @click="conformDelete" class="px-4 py-2 sm:ml-3">
           Deactivate
         </vf-button>
       </template>
-      <template v-slot:close>
+      <template #close>
         <vf-button plain @click="deletePop = false" class="px-4 py-2 sm:ml-3">
           Cancel
         </vf-button>
