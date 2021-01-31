@@ -20,7 +20,11 @@
       </template>
     </flat-item>
     <template v-if="flats">
-      <flat-item v-for="flat in flats" :key="flat.id">
+      <flat-item
+        v-for="flat in flats"
+        :key="flat.id"
+        @click="chooseFlat(flat.id)"
+      >
         <template #middle>
           <h3 class="font-medium text-xl leading-9">{{ flat.name }}</h3>
         </template>
@@ -36,7 +40,7 @@
 import VfButton from '@/components/VfButton.vue'
 import VfInput from '@/components/VfInput.vue'
 import FlatItem from '@/components/FlatItem.vue'
-import VfAvatarList from './VfAvatarList.vue'
+import VfAvatarList from '@/components/VfAvatarList.vue'
 
 export default {
   data() {
@@ -74,6 +78,9 @@ export default {
           console.error('Error adding document: ', error)
           this.$router.push('/error')
         })
+    },
+    chooseFlat(id) {
+      console.log('flat is chosen:' + id)
     },
   },
 }

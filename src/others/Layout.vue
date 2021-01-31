@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TheHeading from '@/components/TheHeading.vue'
+import TheHeading from '@/components/singleton/TheHeading.vue'
 import HeadHome from '@/components/HeadHome.vue'
 import HeadUser from '@/components/HeadUser.vue'
 

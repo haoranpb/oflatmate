@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TheFlatTrack from '@/components/TheFlatTrack.vue'
+import TheFlatTrack from '@/components/singleton/TheFlatTrack.vue'
 
 export default {
   components: { TheFlatTrack },
