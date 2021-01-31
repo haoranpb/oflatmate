@@ -1,6 +1,6 @@
 <template>
   <button
-    class="w-full text-base font-medium inline-flex justify-center rounded-md border sm:w-auto sm:text-sm"
+    class="text-sm font-medium inline-flex justify-center rounded-md border w-auto"
     :class="[focusClass, plainClass, primaryClass, warnClass, dangerClass]"
   >
     <slot></slot>
