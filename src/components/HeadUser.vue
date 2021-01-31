@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import VfAvatarItem from '@/components/VfAvatarItem.vue'
+import VfAvatarItem from '@/components/vf/VfAvatarItem.vue'
 
 export default {
   data() {

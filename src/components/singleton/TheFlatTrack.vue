@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import VfButton from '@/components/VfButton.vue'
-import VfInput from '@/components/VfInput.vue'
+import VfButton from '@/components/vf/VfButton.vue'
+import VfInput from '@/components/vf/VfInput.vue'
 import FlatItem from '@/components/FlatItem.vue'
-import VfAvatarList from '@/components/VfAvatarList.vue'
+import VfAvatarList from '@/components/vf/VfAvatarList.vue'
 
 export default {
   data() {

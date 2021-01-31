@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import VfButton from '@/components/VfButton.vue'
+import VfButton from '@/components/vf/VfButton.vue'
 import WarnPop from '@/components/WarnPop.vue'
-import VfAvatarItem from '@/components/VfAvatarItem.vue'
+import VfAvatarItem from '@/components/vf/VfAvatarItem.vue'
 
 export default {
   data() {
