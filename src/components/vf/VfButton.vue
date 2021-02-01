@@ -1,7 +1,12 @@
 <template>
   <button
-    class="text-sm font-medium inline-flex justify-center rounded-md border w-auto"
-    :class="[focusClass, plainClass, primaryClass, warnClass, dangerClass]"
+    class="btn btn-focus"
+    :class="{
+      'btn-warn': warn,
+      'btn-danger': danger,
+      'btn-primary': primary,
+      'btn-plain': plain,
+    }"
   >
     <slot></slot>
   </button>
@@ -27,40 +32,31 @@ export default {
       default: false,
     },
   },
-  computed: {
-    focusClass() {
-      return [
-        'focus:outline-none',
-        'focus:ring-2',
-        'focus:ring-offset-2',
-        'focus:ring-indigo-500',
-      ]
-    },
-    warnClass() {
-      return this.warn
-        ? ['text-red-600', 'border-gray-300', 'bg-white', 'hover:bg-gray-50']
-        : []
-    },
-    dangerClass() {
-      return this.danger
-        ? ['border-transparent', 'bg-red-600', 'text-white', 'hover:bg-red-700']
-        : []
-    },
-    plainClass() {
-      return this.plain
-        ? ['border-gray-300', 'bg-white', 'text-gray-700', 'hover:bg-gray-50']
-        : []
-    },
-    primaryClass() {
-      return this.primary
-        ? [
-            'border-transparent',
-            'text-white',
-            'bg-primary-600',
-            'hover:bg-primary-700',
-          ]
-        : []
-    },
-  },
 }
 </script>
+
+<style scoped>
+.btn {
+  @apply text-sm font-medium inline-flex justify-center rounded-md border w-auto;
+}
+
+.btn-focus {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+}
+
+.btn-warn {
+  @apply text-red-600 border-gray-300 bg-white hover:bg-gray-50;
+}
+
+.btn-danger {
+  @apply border-transparent bg-red-600 text-white hover:bg-red-700;
+}
+
+.btn-primary {
+  @apply border-transparent text-white bg-primary-600 hover:bg-primary-700;
+}
+
+.btn-plain {
+  @apply border-gray-300 bg-white text-gray-700 hover:bg-gray-50;
+}
+</style>
