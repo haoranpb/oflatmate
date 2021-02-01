@@ -6,6 +6,8 @@
       'btn-danger': danger,
       'btn-primary': primary,
       'btn-plain': plain,
+      'btn-large': large,
+      'btn-middle': !large,
     }"
   >
     <slot></slot>
@@ -28,6 +30,10 @@ export default {
       default: false,
     },
     primary: {
+      type: Boolean,
+      default: false,
+    },
+    large: {
       type: Boolean,
       default: false,
     },
@@ -58,5 +64,13 @@ export default {
 
 .btn-plain {
   @apply border-gray-300 bg-white text-gray-700 hover:bg-gray-50;
+}
+
+.btn-large {
+  @apply px-4 py-2;
+}
+
+.btn-middle {
+  @apply px-3 py-1;
 }
 </style>

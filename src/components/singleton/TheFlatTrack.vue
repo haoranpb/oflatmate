@@ -9,12 +9,7 @@
         />
       </template>
       <template #bottom>
-        <vf-button
-          primary
-          type="submit"
-          @click="createFlat"
-          class="py-1 px-3 mb-3"
-        >
+        <vf-button primary type="submit" @click="createFlat" class="mb-3">
           Create
         </vf-button>
       </template>

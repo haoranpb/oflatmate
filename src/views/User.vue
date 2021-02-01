@@ -10,7 +10,7 @@
     <div>
       <h2 class="text-red-600 font-bold text-xl">Delete Account</h2>
       <p>Once you delete your account, there is no going back.</p>
-      <vf-button warn class="px-4 py-2" @click="deletePop = true">
+      <vf-button large warn @click="deletePop = true">
         Delete your account
       </vf-button>
     </div>
@@ -21,12 +21,12 @@
         be permanently removed. This action cannot be undone.
       </template>
       <template #action>
-        <vf-button danger @click="conformDelete" class="px-4 py-2 sm:ml-3">
+        <vf-button large danger @click="conformDelete" class="sm:ml-3">
           Deactivate
         </vf-button>
       </template>
       <template #close>
-        <vf-button plain @click="deletePop = false" class="px-4 py-2 sm:ml-3">
+        <vf-button plain large @click="deletePop = false" class="sm:ml-3">
           Cancel
         </vf-button>
       </template>
