@@ -3,7 +3,7 @@
     <the-heading class="flex container h-16 mx-auto items-center border-b">
       <component :is="currentComponent" />
     </the-heading>
-    <router-view class="flex flex-grow container m-auto mt-2" />
+    <router-view class="container m-auto mt-2" />
   </div>
 </template>
 
