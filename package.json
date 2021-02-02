@@ -1,7 +1,10 @@
 {
   "name": "flatmate",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
+  "workspaces": [
+    "functions"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
