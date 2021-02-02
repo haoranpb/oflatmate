@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "emulate:func": "firebase emulators:start --only functions",
+    "deploy:func": "firebase deploy --only functions"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.2.1",
