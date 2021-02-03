@@ -21,13 +21,17 @@ firebase.initializeApp({
 /* cSpell:enable */
 
 const functions = firebase.app().functions('europe-west1')
+const db = firebase.firestore()
 if (process.env.NODE_ENV == 'development') {
-  functions.useEmulator('localhost', 5001)
+  const emulatorConfig = require('../firebase.json').emulators
+  functions.useEmulator('localhost', emulatorConfig.functions.port)
+  // firebase.auth().useEmulator(`http://localhost:${emulatorConfig.auth.port}/`)
+  db.useEmulator('localhost', emulatorConfig.firestore.port)
 }
 
 app.config.globalProperties.$firebase = firebase
 // unnecessary, but easy reference
-app.config.globalProperties.$db = firebase.firestore()
+app.config.globalProperties.$db = db
 app.config.globalProperties.$func = functions
 app.config.globalProperties.$user = null
 router.app = app
