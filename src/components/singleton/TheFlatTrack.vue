@@ -67,7 +67,12 @@ export default {
           member: [this.$user.uid],
         })
         .then((docRef) => {
-          console.log('Document written: ', docRef)
+          this.flats.push({
+            id: docRef.id,
+            name: this.form.name,
+            member: [this.$user.uid],
+          })
+          this.form.name = ''
         })
         .catch((error) => {
           console.error('Error adding document: ', error)
