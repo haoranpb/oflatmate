@@ -26,3 +26,4 @@ pnpm-debug.log*
 .firebase
 .firebaserc
 *.log
+functions/.runtimeconfig.json
