@@ -3,6 +3,8 @@
     class="input"
     type="text"
     autocomplete="off"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
     :class="{ 'input-solid': solid, 'input-simple': !solid }"
   />
 </template>
@@ -14,7 +16,9 @@ export default {
       type: Boolean,
       default: false,
     },
+    modelValue: String,
   },
+  emits: ['update:modelValue'],
 }
 </script>
 
