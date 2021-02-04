@@ -17,4 +17,12 @@ function getCurrentUser(auth) {
   })
 }
 
-export { getCurrentUser }
+const userMixin = {
+  computed: {
+    $user() {
+      return this.$store.state.user
+    },
+  },
+}
+
+export { getCurrentUser, userMixin }

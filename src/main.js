@@ -1,13 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router.js'
+import store from './store.js'
+import { userMixin } from './utils'
 import 'tailwindcss/tailwind.css'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/functions'
 
-const app = createApp(App).use(router)
+const app = createApp(App).use(router).use(store)
 
 /* cSpell:disable */
 firebase.initializeApp({
@@ -28,12 +30,13 @@ if (process.env.NODE_ENV == 'development') {
   firebase.auth().useEmulator(`http://localhost:${emulatorConfig.auth.port}/`)
   db.useEmulator('localhost', emulatorConfig.firestore.port)
 }
+// make $user available in every component
+app.mixin(userMixin)
 
 app.config.globalProperties.$firebase = firebase
+router.$firebase = firebase
 // unnecessary, but easy reference
 app.config.globalProperties.$db = db
 app.config.globalProperties.$func = functions
-app.config.globalProperties.$user = null
-router.app = app
 
 app.mount('#app')

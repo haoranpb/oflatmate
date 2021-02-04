@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCurrentUser } from '@/utils'
+import store from '@/store.js'
 import Layout from '@/others/Layout.vue'
 import User from '@/views/User.vue'
 import Home from '@/views/Home.vue'
@@ -31,7 +32,7 @@ const routes = [
     path: '/authentication',
     component: () => import('@/views/Authentication.vue'),
     beforeEnter: () => {
-      if (router.app.config.globalProperties.$user) {
+      if (store.state.user) {
         return '/user'
       }
     },
@@ -53,17 +54,14 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   /*
-    Check authentication status before route entering.
-    Also make user always accessible in `this.$user`.
+    Check authentication status before route entering, vuex is lost after refresh
   */
-  if (to.meta.requiresAuth && !router.app.config.globalProperties.$user) {
-    const user = await getCurrentUser(
-      router.app.config.globalProperties.$firebase.auth()
-    )
+  if (to.meta.requiresAuth && !store.state.user) {
+    const user = await getCurrentUser(router.$firebase.auth())
     if (!user) {
       return '/authentication'
     } else {
-      router.app.config.globalProperties.$user = user
+      store.commit('setUser', user)
     }
   }
 })
