@@ -25,7 +25,7 @@ const db = firebase.firestore()
 if (process.env.NODE_ENV == 'development') {
   const emulatorConfig = require('../firebase.json').emulators
   functions.useEmulator('localhost', emulatorConfig.functions.port)
-  // firebase.auth().useEmulator(`http://localhost:${emulatorConfig.auth.port}/`)
+  firebase.auth().useEmulator(`http://localhost:${emulatorConfig.auth.port}/`)
   db.useEmulator('localhost', emulatorConfig.firestore.port)
 }
 
