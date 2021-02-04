@@ -50,6 +50,7 @@ export default {
   mounted() {
     this.$db
       .collection('flats')
+      .where('member', 'array-contains', this.$user.uid)
       .get()
       .then((querySnapshot) => {
         this.flats = querySnapshot.docs.map((doc) =>
