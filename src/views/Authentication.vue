@@ -14,7 +14,7 @@ export default {
     const ui = new firebaseui.auth.AuthUI(this.$firebase.auth())
 
     const nextPath = this.$route.redirectedFrom
-      ? this.$route.redirectedFrom.path
+      ? this.$route.redirectedFrom.fullPath
       : DEFAULT_SIGNIN_PATH
 
     ui.start('#firebaseui-auth-container', {
