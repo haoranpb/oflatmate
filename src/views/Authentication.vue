@@ -7,6 +7,7 @@
 <script>
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
+import { DEFAULT_SIGNIN_PATH } from '@/utils'
 
 export default {
   mounted() {
@@ -14,7 +15,7 @@ export default {
 
     const nextPath = this.$route.redirectedFrom
       ? this.$route.redirectedFrom.path
-      : '/user'
+      : DEFAULT_SIGNIN_PATH
 
     ui.start('#firebaseui-auth-container', {
       // no auto refresh during login, but getCurrentUser in utils is still needed for user refresh

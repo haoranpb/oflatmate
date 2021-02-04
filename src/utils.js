@@ -25,4 +25,6 @@ const userMixin = {
   },
 }
 
-export { getCurrentUser, userMixin }
+const DEFAULT_SIGNIN_PATH = '/path'
+
+export { getCurrentUser, userMixin, DEFAULT_SIGNIN_PATH }

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getCurrentUser } from '@/utils'
+import { getCurrentUser, DEFAULT_SIGNIN_PATH } from '@/utils'
 import store from '@/store.js'
 import Layout from '@/others/Layout.vue'
 import User from '@/views/User.vue'
@@ -33,7 +33,7 @@ const routes = [
     component: () => import('@/views/Authentication.vue'),
     beforeEnter: () => {
       if (store.state.user) {
-        return '/user'
+        return DEFAULT_SIGNIN_PATH
       }
     },
   },
