@@ -20,7 +20,7 @@ const store = createStore({
       state.currentFlatId = fid
     },
     fetchFlats(state) {
-      // error in strict mode, don't quite understand why
+      // error in strict mode, querySnapshot is Proxy
       db.collection('flats')
         .where('member', 'array-contains', state.user.uid)
         .get()
@@ -29,7 +29,7 @@ const store = createStore({
             Object.assign({ id: doc.id }, doc.data())
           )
           // TODO: switch to last modified
-          state.currentFlatId = state.flats[0].id
+          state.currentFlatId = state.flats ? null : state.flats[0].id
         })
     },
     createFlat(state, newFlatName) {
