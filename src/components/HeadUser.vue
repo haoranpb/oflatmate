@@ -7,7 +7,7 @@
   </router-link>
   <div v-if="$user" class="ml-3 relative" ref="userMenu">
     <button
-      class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+      class="max-w-xs rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
       @click="open = !open"
     >
       <vf-avatar-item :link="$user.photoURL" />
