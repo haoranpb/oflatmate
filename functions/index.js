@@ -60,7 +60,8 @@ exports.inviteToFlat = functions
   })
 
 /*
-  This function is slow, maybe real time bind the `flats` collection could help
+  This function is taking way too long, fix soon
+  maybe real time bind the `flats` collection could help
 */
 exports.handleInvitation = functions
   .region('europe-west1')
