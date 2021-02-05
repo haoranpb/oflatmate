@@ -45,7 +45,7 @@ export default {
       this.$store.commit('createFlat', this.flatName)
     },
     chooseFlat(id) {
-      this.$store.commit('setCurrentFlat', id)
+      this.$store.commit('setCurrentFlatId', id)
     },
   },
   computed: {

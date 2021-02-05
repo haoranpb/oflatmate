@@ -6,7 +6,7 @@ const store = createStore({
     return {
       user: null,
       flats: [],
-      currentFlat: null,
+      currentFlatId: null,
     }
   },
   mutations: {
@@ -16,8 +16,8 @@ const store = createStore({
     clearUser(state) {
       state.user = null
     },
-    setCurrentFlat(state, fid) {
-      state.currentFlat = fid
+    setCurrentFlatId(state, fid) {
+      state.currentFlatId = fid
     },
     fetchFlats(state) {
       // error in strict mode, don't quite understand why
@@ -29,7 +29,7 @@ const store = createStore({
             Object.assign({ id: doc.id }, doc.data())
           )
           // TODO: switch to last modified
-          state.currentFlat = state.flats[0].id
+          state.currentFlatId = state.flats[0].id
         })
     },
     createFlat(state, newFlatName) {
@@ -48,6 +48,7 @@ const store = createStore({
         })
     },
   },
+  getters: {},
 })
 
 export default store
