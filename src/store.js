@@ -40,6 +40,7 @@ const store = createStore({
           member: [state.user.uid],
         })
         .then((docRef) => {
+          // duplicate code with appendFlat, consider make it action
           state.flats.push({
             id: docRef.id,
             name: newFlatName,
@@ -47,8 +48,15 @@ const store = createStore({
           })
         })
     },
+    appendFlat(state, newFlat) {
+      state.flats.push(newFlat)
+    },
   },
-  getters: {},
+  getters: {
+    currentFlat(state) {
+      return state.flats.find((flat) => flat.id == state.currentFlatId)
+    },
+  },
 })
 
 export default store
