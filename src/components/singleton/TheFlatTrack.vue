@@ -45,7 +45,7 @@ export default {
       this.$store.commit('createFlat', this.flatName)
     },
     chooseFlat(id) {
-      console.log('flat is chosen:' + id)
+      this.$store.commit('setCurrentFlat', id)
     },
   },
   computed: {

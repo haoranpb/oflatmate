@@ -6,6 +6,7 @@ const store = createStore({
     return {
       user: null,
       flats: [],
+      currentFlat: null,
     }
   },
   mutations: {
@@ -14,6 +15,9 @@ const store = createStore({
     },
     clearUser(state) {
       state.user = null
+    },
+    setCurrentFlat(state, fid) {
+      state.currentFlat = fid
     },
     fetchFlats(state) {
       // error in strict mode, don't quite understand why
@@ -24,6 +28,8 @@ const store = createStore({
           state.flats = querySnapshot.docs.map((doc) =>
             Object.assign({ id: doc.id }, doc.data())
           )
+          // TODO: switch to last modified
+          state.currentFlat = state.flats[0].id
         })
     },
     createFlat(state, newFlatName) {
