@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     sizeClass() {
-      return this.large ? ['h-18', 'w-18'] : ['h-8', 'w-8']
+      return this.large ? ['h-24', 'w-24'] : ['h-8', 'w-8']
     },
   },
 }
