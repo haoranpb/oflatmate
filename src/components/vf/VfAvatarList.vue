@@ -25,10 +25,11 @@ export default {
     },
   },
   mounted() {
-    let getPhotoURL = this.$func.httpsCallable('getUsersInfo')
-    getPhotoURL(this.members).then((result) => {
-      this.users = result.data.users
-    })
+    this.$func
+      .httpsCallable('getUsersInfo')(this.members)
+      .then((result) => {
+        this.users = result.data.users
+      })
   },
 }
 </script>
