@@ -11,5 +11,8 @@ import TheChoreList from '@/components/singleton/TheChoreList.vue'
 
 export default {
   components: { TheFlatTrack, TheChoreList },
+  mounted() {
+    this.$store.commit('fetchFlats')
+  },
 }
 </script>

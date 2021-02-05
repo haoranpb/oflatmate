@@ -61,7 +61,7 @@ export default {
     },
     signOut() {
       this.$store.commit('clearUser')
-      this.$firebase.auth().signOut()
+      this.$auth.signOut()
       this.$router.push('/authentication')
     },
   },

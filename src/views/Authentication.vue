@@ -8,10 +8,11 @@
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 import { DEFAULT_SIGNIN_PATH } from '@/utils'
+import { firebase } from '@/firebaseConfig'
 
 export default {
   mounted() {
-    const ui = new firebaseui.auth.AuthUI(this.$firebase.auth())
+    const ui = new firebaseui.auth.AuthUI(this.$auth)
 
     const nextPath = this.$route.redirectedFrom
       ? this.$route.redirectedFrom.fullPath
@@ -22,8 +23,8 @@ export default {
       signInFlow: 'popup',
       signInSuccessUrl: nextPath,
       signInOptions: [
-        this.$firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        this.$firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       ],
     })
   },

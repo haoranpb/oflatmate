@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCurrentUser, DEFAULT_SIGNIN_PATH } from '@/utils'
+import { auth } from '@/firebaseConfig'
 import store from '@/store.js'
 import Layout from '@/others/Layout.vue'
 import User from '@/views/User.vue'
@@ -57,7 +58,7 @@ router.beforeEach(async (to) => {
     Check authentication status before route entering, vuex is lost after refresh
   */
   if (to.meta.requiresAuth && !store.state.user) {
-    const user = await getCurrentUser(router.$firebase.auth())
+    const user = await getCurrentUser(auth)
     if (!user) {
       return '/authentication'
     } else {

@@ -25,11 +25,9 @@ export default {
     },
   },
   mounted() {
-    this.$func
-      .httpsCallable('getUsersInfo')(this.members)
-      .then((result) => {
-        this.users = result.data.users
-      })
+    this.$func('getUsersInfo', this.members).then((result) => {
+      this.users = result.data.users
+    })
   },
 }
 </script>
