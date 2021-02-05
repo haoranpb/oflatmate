@@ -28,7 +28,7 @@ export default {
 }
 
 .input-solid {
-  @apply bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0;
+  @apply bg-gray-100 border-transparent focus:border-primary-500 focus:bg-white focus:ring-0;
 }
 
 .input-simple {
