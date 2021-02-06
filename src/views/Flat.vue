@@ -16,9 +16,10 @@ import { mapMutations } from 'vuex'
 import TheFlatTrack from '@/components/singleton/TheFlatTrack.vue'
 import TheChoreList from '@/components/singleton/TheChoreList.vue'
 import TheInvitation from '@/components/singleton/TheInvitation.vue'
+import TheAnnouncement from '@/components/singleton/TheAnnouncement.vue'
 
 export default {
-  components: { TheFlatTrack, TheChoreList, TheInvitation },
+  components: { TheFlatTrack, TheChoreList, TheInvitation, TheAnnouncement },
   mounted() {
     this.fetchFlats()
 
