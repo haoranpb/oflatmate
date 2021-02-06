@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import TheFlatTrack from '@/components/singleton/TheFlatTrack.vue'
 import TheChoreList from '@/components/singleton/TheChoreList.vue'
 import TheInvitation from '@/components/singleton/TheInvitation.vue'
@@ -16,26 +17,26 @@ import TheInvitation from '@/components/singleton/TheInvitation.vue'
 export default {
   components: { TheFlatTrack, TheChoreList, TheInvitation },
   mounted() {
-    this.$store.commit('fetchFlats')
+    this.fetchFlats()
 
     // handles invitation
     if (Object.keys(this.$route.query).length != 0) {
       const invitetId = this.$route.query.invite
       const flatId = this.$route.query.flat
 
-      if (this.$store.state.flats.find((flat) => flat.id == flatId)) {
-        this.$store.commit('setCurrentFlatId', invitetId)
+      if (this.$store.getters.existFlat(flatId)) {
+        this.setCurrentFlatId(invitetId)
       } else {
         this.$func('handleInvitation', {
           inviteId: invitetId,
         }).then((result) => {
-          this.$store.commit(
-            'appendFlat',
-            Object.assign({ id: flatId }, result.data)
-          )
+          this.appendFlat(Object.assign({ id: flatId }, result.data))
         })
       }
     }
+  },
+  methods: {
+    ...mapMutations(['fetchFlats', 'setCurrentFlatId', 'appendFlat']),
   },
 }
 </script>

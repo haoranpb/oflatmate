@@ -56,6 +56,9 @@ const store = createStore({
     currentFlat(state) {
       return state.flats.find((flat) => flat.id == state.currentFlatId)
     },
+    existFlat(state) {
+      return (flatId) => state.flats.find((flat) => flat.id == flatId)
+    },
   },
 })
 
