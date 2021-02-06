@@ -29,7 +29,7 @@ const store = createStore({
             Object.assign({ id: doc.id }, doc.data())
           )
           // TODO: switch to last modified
-          state.currentFlatId = state.flats ? null : state.flats[0].id
+          state.currentFlatId = state.flats.empty ? null : state.flats[0].id
         })
     },
     createFlat(state, newFlatName) {
