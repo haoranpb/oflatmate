@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="chore-list"
-    class="border-dashed border-2 border-gray-300 rounded-md inline-block p-6 w-80"
-  >
+  <div id="chore-list" class="empty-box">
     <p class="text-gray-600">
       It seems that you don't have a chore schedule yet, create one now👇
     </p>
