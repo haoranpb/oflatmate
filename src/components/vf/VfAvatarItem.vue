@@ -1,9 +1,11 @@
 <template>
   <img
+    v-if="link"
     class="rounded-full inline-block ring-2 ring-white"
     :class="sizeClass"
-    :src="resolveUrl"
+    :src="link"
   />
+  <i v-else class="fas fa-user-circle" :class="sizeIcon"></i>
 </template>
 
 <script>
@@ -19,8 +21,8 @@ export default {
     sizeClass() {
       return this.large ? ['h-24', 'w-24'] : ['h-8', 'w-8']
     },
-    resolveUrl() {
-      return this.link ? this.link : require('@/assets/avatar.svg')
+    sizeIcon() {
+      return this.large ? 'text-8xl' : 'fa-2x'
     },
   },
 }
