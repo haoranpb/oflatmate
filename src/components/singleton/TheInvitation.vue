@@ -1,5 +1,5 @@
 <template>
-  <div id="the-invitation" class="border rounded-md p-6 w-80">
+  <div id="the-invitation" class="border m-px mb-6">
     <h3>Invite your flatmates to join the flat</h3>
     <vf-input v-model="email" placeholder="Add email" class="my-4" solid />
     <vf-button primary @click="invite" class="float-right mr-4 mt-2">

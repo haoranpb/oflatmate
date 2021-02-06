@@ -1,9 +1,12 @@
 <template>
   <div id="flat">
     <the-flat-track class="mb-4" />
-    <div class="flex flex-row space-x-4">
-      <the-chore-list />
-      <the-invitation />
+    <div class="flex flex-row space-x-4 flex-grow">
+      <the-chore-list class="base-box" />
+      <div>
+        <the-invitation class="base-box" />
+        <the-announcement class="base-box" />
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +46,10 @@ export default {
 
 <style>
 .empty-box {
-  @apply border-dashed border-2 border-gray-300 rounded-md inline-block p-6 w-80;
+  @apply border-dashed border-2 border-gray-300;
+}
+
+.base-box {
+  @apply rounded-md p-6 w-80 h-48;
 }
 </style>

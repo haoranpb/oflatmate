@@ -1,5 +1,5 @@
 <template>
-  <div id="flat-track" class="bg-indigo-50 container flex flex-grow py-4">
+  <div id="flat-track" class="bg-indigo-50 container flex py-4">
     <flat-item>
       <template #middle>
         <vf-input name="flat_name" v-model="flatName" placeholder="Flat Name" />

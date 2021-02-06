@@ -1,6 +1,6 @@
 <template>
   <div id="chore-list" class="empty-box">
-    <p class="text-gray-600">
+    <p class="text-gray-500">
       It seems that you don't have a chore schedule yet, create one now👇
     </p>
     <div class="flex flex-row my-4 justify-center">
