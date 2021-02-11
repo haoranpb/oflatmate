@@ -12,10 +12,7 @@
 <script>
 export default {
   props: {
-    solid: {
-      type: Boolean,
-      default: false,
-    },
+    solid: { type: Boolean, default: false },
     modelValue: String,
   },
   emits: ['update:modelValue'],
