@@ -1,18 +1,29 @@
 <template>
-  <input
-    class="input"
-    type="text"
-    autocomplete="off"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-    :class="{ 'input-solid': solid, 'input-simple': !solid }"
-  />
+  <div :class="{ 'pb-5': status != 'danger' }">
+    <input
+      class="input"
+      type="text"
+      autocomplete="off"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+      :placeholder="placeholder"
+      :class="{
+        'input-solid': solid,
+        'input-simple': !solid,
+        'input-danger': status == 'danger',
+      }"
+    />
+    <p v-if="status" class="text-xs text-red-500 pt-1 h-5">{{ message }}</p>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
     solid: { type: Boolean, default: false },
+    status: { type: String },
+    message: { type: String },
+    placeholder: { type: String },
     modelValue: String,
   },
   emits: ['update:modelValue'],
@@ -30,5 +41,9 @@ export default {
 
 .input-simple {
   @apply border-gray-300 focus:border-primary-500 focus:ring-primary-500;
+}
+
+.input-danger {
+  @apply border-red-300 focus:border-red-500;
 }
 </style>
