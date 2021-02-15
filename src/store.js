@@ -46,6 +46,8 @@ const store = createStore({
             name: newFlatName,
             member: [state.user.uid],
           })
+
+          state.currentFlatId = docRef.id
         })
     },
     appendFlat(state, newFlat) {
