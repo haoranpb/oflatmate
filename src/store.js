@@ -55,6 +55,7 @@ const store = createStore({
     },
   },
   getters: {
+    // getters shouldn't return Proxy type
     currentFlat(state) {
       return state.flats.find((flat) => flat.id == state.currentFlatId)
     },

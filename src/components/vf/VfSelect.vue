@@ -1,6 +1,8 @@
 <template>
   <select
     class="select"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
     :class="{
       'select-solid': solid,
       'select-simple': !solid,
@@ -22,7 +24,12 @@ export default {
       type: Boolean,
       default: false,
     },
+    modelValue: {
+      value: [Number, String],
+      required: true,
+    },
   },
+  emits: ['update:modelValue'],
 }
 </script>
 
