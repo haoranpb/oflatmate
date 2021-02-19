@@ -2,8 +2,11 @@
   <div v-if="schedule" id="chore-list">
     <h3 class="text-xl mb-6 font-medium text-gray-600">Chore Schedule</h3>
     <draggable v-model="schedule" item-key="id" handle=".fa-grip-lines">
-      <template #item="{ element }">
-        <div class="flex flex-row h-10 mr-2 mb-1">
+      <template #item="{ element, index }">
+        <div
+          class="flex flex-row h-10 px-1 mb-1 rounded-md"
+          :class="{ current: index == diffByUnit() }"
+        >
           <vf-avatar-list class="my-auto" :members="element.workers" />
           <div class="flex-grow"></div>
           <i class="flex fas fa-grip-lines my-auto"></i>
@@ -22,7 +25,7 @@
         <option>3</option>
       </vf-select>
       <span class="mx-1 leading-loose">people, every</span>
-      <vf-select v-model="rate" solid small>
+      <vf-select v-model="unit" solid small>
         <option>day</option>
         <option selected>week</option>
         <option>month</option>
@@ -39,11 +42,12 @@ import VfSelect from '@/components/vf/VfSelect.vue'
 import VfButton from '@/components/vf/VfButton.vue'
 import VfAvatarList from '@/components/vf/VfAvatarList.vue'
 import draggable from 'vuedraggable'
+import dayjs from 'dayjs'
 
 export default {
   data() {
     return {
-      rate: 'week',
+      unit: 'week',
       numPerSchedule: 2,
       active: false,
     }
@@ -70,12 +74,18 @@ export default {
 
       this.$store.commit('genSchedule', {
         schedule: schedule,
-        rate: this.rate,
-        start: new Date(),
+        unit: this.unit,
+        start: dayjs().format('YYYY-MM-DD'),
       })
     },
     gcd(a, b) {
       return a ? this.gcd(b % a, a) : b
+    },
+    diffByUnit() {
+      return dayjs().diff(
+        this.$store.getters.currentFlat.chore.start,
+        this.$store.getters.currentFlat.chore.unit
+      )
     },
   },
   computed: {
@@ -103,6 +113,10 @@ export default {
 }
 
 .sortable-chosen {
-  @apply bg-gray-200;
+  @apply bg-gray-200 !important;
+}
+
+.current {
+  @apply bg-yellow-100 bg-opacity-60;
 }
 </style>
