@@ -1,11 +1,18 @@
 <template>
-  <div v-if="schedule" id="chore-list">
+  <div v-if="schedule && scrollToCurrent()" id="chore-list">
     <h3 class="text-xl mb-6 font-medium text-gray-600">Chore Schedule</h3>
-    <draggable v-model="schedule" item-key="id" handle=".fa-grip-lines">
+    <draggable
+      v-model="schedule"
+      class="overflow-y-auto h-72"
+      ref="choreSchedule"
+      item-key="id"
+      handle=".fa-grip-lines"
+      :animation="200"
+    >
       <template #item="{ element, index }">
         <div
           class="flex flex-row h-10 px-1 mb-1 rounded-md"
-          :class="{ current: index == diffByUnit() }"
+          :class="{ current: index == diffByUnit }"
         >
           <vf-avatar-list class="my-auto" :members="element.workers" />
           <div class="flex-grow"></div>
@@ -19,7 +26,7 @@
       It seems that you don't have a chore schedule yet, create one now👇
     </p>
     <div class="flex flex-row my-4 justify-center">
-      <vf-select v-model="numPerSchedule" solid small>
+      <vf-select v-model="number" solid small>
         <option>1</option>
         <option selected>2</option>
         <option>3</option>
@@ -48,44 +55,52 @@ export default {
   data() {
     return {
       unit: 'week',
-      numPerSchedule: 2,
-      active: false,
+      number: 2,
     }
   },
   components: { VfSelect, VfButton, VfAvatarList, draggable },
   methods: {
     generateSchedule() {
       const residentNum = this.$store.getters.currentFlat.member.length
-      const gcd = this.gcd(residentNum, this.numPerSchedule)
-      const arrTimes = gcd == 1 ? this.numPerSchedule : gcd
+      /*
+        Total number of combinations: C(n, k), the number of all workers
+         in those combinations: k*C(n, k), so the member has to repeat itself
+         for k*C(n, k)/n times.
 
-      // Everyone same workload, TODO: all combinations
-      const schedule = Array(arrTimes)
-        .fill(this.$store.getters.currentFlat.member)
-        .flat()
-        .reduce((arr, item, idx) => {
-          return idx % this.numPerSchedule === 0
-            ? [...arr, [item]]
-            : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]]
-        }, [])
-        .map((val, i) => {
-          return { workers: val, id: i }
+        Instead of generating all combinations, becase this way feels faster
+      */
+      if (residentNum > this.number) {
+        let arrTimes = 1
+        for (let i = this.number; i < residentNum; i++) arrTimes *= i
+        for (let i = 1; i <= residentNum - this.number; i++) arrTimes /= i
+
+        const schedule = Array(arrTimes)
+          .fill(this.$store.getters.currentFlat.member)
+          .flat()
+          .reduce((arr, item, idx) => {
+            return idx % this.number === 0
+              ? [...arr, [item]]
+              : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]]
+          }, [])
+          .map((val, i) => {
+            return { workers: val, id: i }
+          })
+
+        this.$store.commit('genSchedule', {
+          schedule: schedule,
+          unit: this.unit,
+          start: dayjs().format('YYYY-MM-DD'),
         })
-
-      this.$store.commit('genSchedule', {
-        schedule: schedule,
-        unit: this.unit,
-        start: dayjs().format('YYYY-MM-DD'),
+      } else {
+        console.log('error')
+      }
+    },
+    scrollToCurrent() {
+      // feel likes a hack to add an event after draggable is rendered
+      this.$nextTick(() => {
+        this.$refs.choreSchedule.$el.scrollTop = 40 * (this.diffByUnit - 2)
       })
-    },
-    gcd(a, b) {
-      return a ? this.gcd(b % a, a) : b
-    },
-    diffByUnit() {
-      return dayjs().diff(
-        this.$store.getters.currentFlat.chore.start,
-        this.$store.getters.currentFlat.chore.unit
-      )
+      return true
     },
   },
   computed: {
@@ -98,6 +113,12 @@ export default {
       set(value) {
         this.$store.commit('updateSchedule', value)
       },
+    },
+    diffByUnit() {
+      return dayjs().diff(
+        this.$store.getters.currentFlat.chore.start,
+        this.$store.getters.currentFlat.chore.unit
+      )
     },
   },
 }
