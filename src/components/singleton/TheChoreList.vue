@@ -1,5 +1,22 @@
 <template>
-  <div id="chore-list" class="empty-box">
+  <div v-if="schedule" id="chore-list">
+    <h3 class="text-xl mb-6 font-medium text-gray-600">Chore Schedule</h3>
+    <draggable v-model="schedule" item-key="id" handle=".fa-grip-lines">
+      <template #item="{ element }">
+        <div class="flex flex-row h-10 mr-2 mb-1">
+          <vf-avatar-list class="my-auto" :members="element.workers" />
+          <div class="flex-grow"></div>
+          <i class="flex fas fa-grip-lines my-auto"></i>
+        </div>
+      </template>
+    </draggable>
+    <div>
+      <vf-button primary @click="conform" class="mt-1 mr-4 float-right">
+        conform
+      </vf-button>
+    </div>
+  </div>
+  <div v-else id="chore-list" class="empty-box">
     <p class="text-gray-500">
       It seems that you don't have a chore schedule yet, create one now👇
     </p>
@@ -25,6 +42,8 @@
 <script>
 import VfSelect from '@/components/vf/VfSelect.vue'
 import VfButton from '@/components/vf/VfButton.vue'
+import VfAvatarList from '@/components/vf/VfAvatarList.vue'
+import draggable from 'vuedraggable'
 
 export default {
   data() {
@@ -32,9 +51,10 @@ export default {
       rate: 'week',
       numPerSchedule: 2,
       schedule: null,
+      active: false,
     }
   },
-  components: { VfSelect, VfButton },
+  components: { VfSelect, VfButton, VfAvatarList, draggable },
   methods: {
     generateSchedule() {
       const residentNum = this.$store.getters.currentFlat.member.length
@@ -50,10 +70,33 @@ export default {
             ? [...arr, [item]]
             : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]]
         }, [])
+        .map((val, i) => {
+          return { workers: val, id: i }
+        })
     },
     gcd(a, b) {
       return a ? this.gcd(b % a, a) : b
     },
+    conform() {
+      console.log(this.schedule)
+    },
+    toggelActive() {
+      console.log('key down')
+    },
   },
 }
 </script>
+
+<style scoped>
+.activeItem {
+  @apply bg-gray-50;
+}
+
+.sortable-ghost {
+  @apply bg-gray-100 opacity-30;
+}
+
+.sortable-chosen {
+  @apply bg-gray-200;
+}
+</style>

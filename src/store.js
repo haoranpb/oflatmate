@@ -53,6 +53,9 @@ const store = createStore({
     appendFlat(state, newFlat) {
       state.flats.push(newFlat)
     },
+    updateSchedule(state, newSchedule) {
+      console.log(state, newSchedule)
+    },
   },
   getters: {
     // getters shouldn't return Proxy type

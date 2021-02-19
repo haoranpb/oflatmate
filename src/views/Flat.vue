@@ -47,10 +47,10 @@ export default {
 
 <style>
 .empty-box {
-  @apply border-dashed border-2 border-gray-300;
+  @apply border-dashed border-2 border-gray-300 h-48;
 }
 
 .base-box {
-  @apply rounded-md p-6 w-80 h-48;
+  @apply rounded-md p-6 w-80;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="the-invitation" class="border m-px mb-6">
+  <div id="the-invitation" class="border m-px mb-6 h-48">
     <h3>Invite your flatmates to join the flat</h3>
     <vf-input
       solid
