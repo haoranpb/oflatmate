@@ -75,6 +75,19 @@ const store = createStore({
         .doc(state.currentFlatId)
         .update({ 'chore.schedule': newSchedule })
     },
+    delScheduleAt(state, index) {
+      state.flats
+        .find((flat) => flat.id == state.currentFlatId)
+        .chore.schedule.splice(index, 1)
+
+      db.collection('flats')
+        .doc(state.currentFlatId)
+        .update({
+          'chore.schedule': state.flats.find(
+            (flat) => flat.id == state.currentFlatId
+          ).chore.schedule,
+        })
+    },
   },
   getters: {
     // getters shouldn't return Proxy type

@@ -11,12 +11,17 @@
     >
       <template #item="{ element, index }">
         <div
-          class="flex flex-row h-10 px-1 mb-1 rounded-md"
+          class="flex flex-row h-10 px-1 mb-1 rounded-md space-x-3"
           :class="{ current: index == diffByUnit }"
         >
+          <i
+            title="delete"
+            @click="delScheduleAt(index)"
+            class="flex fas fa-times fa-sm text-gray-500 my-auto"
+          ></i>
           <vf-avatar-list class="my-auto" :members="element.workers" />
           <div class="flex-grow"></div>
-          <i class="flex fas fa-grip-lines my-auto"></i>
+          <i title="handle" class="flex fas fa-grip-lines my-auto"></i>
         </div>
       </template>
     </draggable>
@@ -101,6 +106,9 @@ export default {
         this.$refs.choreSchedule.$el.scrollTop = 40 * (this.diffByUnit - 2)
       })
       return true
+    },
+    delScheduleAt(index) {
+      this.$store.commit('delScheduleAt', index)
     },
   },
   computed: {
