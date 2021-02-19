@@ -10,11 +10,6 @@
         </div>
       </template>
     </draggable>
-    <div>
-      <vf-button primary @click="conform" class="mt-1 mr-4 float-right">
-        conform
-      </vf-button>
-    </div>
   </div>
   <div v-else id="chore-list" class="empty-box">
     <p class="text-gray-500">
@@ -50,7 +45,6 @@ export default {
     return {
       rate: 'week',
       numPerSchedule: 2,
-      schedule: null,
       active: false,
     }
   },
@@ -62,7 +56,7 @@ export default {
       const arrTimes = gcd == 1 ? this.numPerSchedule : gcd
 
       // Everyone same workload, TODO: all combinations
-      this.schedule = Array(arrTimes)
+      const schedule = Array(arrTimes)
         .fill(this.$store.getters.currentFlat.member)
         .flat()
         .reduce((arr, item, idx) => {
@@ -73,15 +67,27 @@ export default {
         .map((val, i) => {
           return { workers: val, id: i }
         })
+
+      this.$store.commit('genSchedule', {
+        schedule: schedule,
+        rate: this.rate,
+        start: new Date(),
+      })
     },
     gcd(a, b) {
       return a ? this.gcd(b % a, a) : b
     },
-    conform() {
-      console.log(this.schedule)
-    },
-    toggelActive() {
-      console.log('key down')
+  },
+  computed: {
+    schedule: {
+      get() {
+        return this.$store.getters.currentFlat.chore
+          ? this.$store.getters.currentFlat.chore.schedule
+          : null
+      },
+      set(value) {
+        this.$store.commit('updateSchedule', value)
+      },
     },
   },
 }

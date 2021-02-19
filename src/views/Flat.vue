@@ -1,13 +1,17 @@
 <template>
   <div id="flat">
     <the-flat-track class="mb-4" />
-    <div class="flex flex-row space-x-4 flex-grow">
+    <div
+      v-if="$store.state.currentFlatId"
+      class="flex flex-row space-x-4 flex-grow"
+    >
       <the-chore-list class="base-box" />
       <div>
         <the-invitation class="base-box" />
         <the-announcement class="base-box" />
       </div>
     </div>
+    <div v-else>You don't have a flat yet, create one Now!</div>
   </div>
 </template>
 

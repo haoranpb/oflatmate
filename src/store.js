@@ -53,8 +53,27 @@ const store = createStore({
     appendFlat(state, newFlat) {
       state.flats.push(newFlat)
     },
+    genSchedule(state, scheduleObj) {
+      db.collection('flats')
+        .doc(state.currentFlatId)
+        .update({
+          chore: scheduleObj,
+        })
+        .then(() => {
+          state.flats.find(
+            (flat) => flat.id == state.currentFlatId
+          ).chore = scheduleObj
+        })
+    },
     updateSchedule(state, newSchedule) {
-      console.log(state, newSchedule)
+      // there should be a way to keep them in sync
+      state.flats.find(
+        (flat) => flat.id == state.currentFlatId
+      ).chore.schedule = newSchedule
+
+      db.collection('flats')
+        .doc(state.currentFlatId)
+        .update({ 'chore.schedule': newSchedule })
     },
   },
   getters: {
