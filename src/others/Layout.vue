@@ -1,6 +1,6 @@
 <template>
   <div id="layout" class="h-full flex flex-col">
-    <the-heading class="flex container h-16 mx-auto items-center border-b">
+    <the-heading class="flex container h-16 mx-auto items-center">
       <component :is="currentComponent" />
     </the-heading>
     <main class="flex flex-grow container mx-auto mt-2">
