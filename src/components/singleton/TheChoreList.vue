@@ -73,7 +73,7 @@ export default {
     return {
       unit: 'week',
       number: 2,
-      startDate: null,
+      startDate: new Date(),
     }
   },
   components: { VfSelect, VfButton, VfAvatarList, draggable, VfCalender },
