@@ -3,7 +3,7 @@
     id="home"
     class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
   >
-    <div class="sm:text-center lg:text-left">
+    <section class="sm:text-center lg:text-left">
       <h1
         class="text-5xl tracking-tight font-extrabold text-gray-900 md:text-6xl"
       >
@@ -29,167 +29,69 @@
             to="#"
             class="hero-link text-primary-700 bg-primary-100 hover:bg-primary-200 md:py-4 md:text-lg md:px-10"
           >
-            Live demo
+            Documentation
           </router-link>
         </div>
       </div>
-    </div>
+    </section>
 
-    <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-col text-center w-full mb-20">
-          <h2
-            class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1"
-          >
-            ROOF PARTY POLAROID
-          </h2>
-          <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">
-            Master Cleanse Reliac Heirloom
-          </h1>
-        </div>
-        <div class="flex flex-wrap -m-4">
-          <div class="p-4 md:w-1/3">
-            <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-              <div class="flex items-center mb-3">
-                <div
-                  class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0"
-                >
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
-                </div>
-                <h2 class="text-gray-900 text-lg title-font font-medium">
-                  Shooting Stars
-                </h2>
-              </div>
-              <div class="flex-grow">
-                <p class="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine.
-                </p>
-                <a class="mt-3 text-indigo-500 inline-flex items-center"
-                  >Learn More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 md:w-1/3">
-            <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-              <div class="flex items-center mb-3">
-                <div
-                  class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0"
-                >
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-                <h2 class="text-gray-900 text-lg title-font font-medium">
-                  The Catalyzer
-                </h2>
-              </div>
-              <div class="flex-grow">
-                <p class="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine.
-                </p>
-                <a class="mt-3 text-indigo-500 inline-flex items-center"
-                  >Learn More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 md:w-1/3">
-            <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-              <div class="flex items-center mb-3">
-                <div
-                  class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0"
-                >
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="6" cy="6" r="3"></circle>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <path
-                      d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"
-                    ></path>
-                  </svg>
-                </div>
-                <h2 class="text-gray-900 text-lg title-font font-medium">
-                  Neptune
-                </h2>
-              </div>
-              <div class="flex-grow">
-                <p class="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine.
-                </p>
-                <a class="mt-3 text-indigo-500 inline-flex items-center"
-                  >Learn More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="text-gray-600 container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap -m-4">
+        <feature-item
+          v-for="item in features"
+          :key="item.icon"
+          :outLink="item.outLink"
+        >
+          <template #icon><i class="fas" :class="item.icon"></i></template>
+          <template #title>{{ item.title }}</template>
+          <template #description>{{ item.description }}</template>
+          <template #link>{{ item.link }}</template>
+        </feature-item>
       </div>
     </section>
   </div>
 </template>
+
+<script>
+import FeatureItem from '@/components/FeatureItem.vue'
+
+export default {
+  components: { FeatureItem },
+  data() {
+    return {
+      features: [
+        {
+          title: 'Open Source',
+          description: 'Flatmate is completely open sourced with MIT license',
+          icon: 'fa-code-branch',
+          link: 'Source Code',
+          outLink: 'https://github.com/ludanxer/flatmate',
+        },
+        {
+          title: 'Public Roadmap',
+          description:
+            'Flatmate iterates fast and the next steps are always available in public, \
+            feel free to drop your opions on our plan so we can learn what you think about and \
+            move towards the right direction',
+          icon: 'fa-map',
+          link: 'Roadmap',
+          outLink: 'https://github.com/ludanxer/flatmate/projects',
+        },
+        {
+          title: 'Free Forever',
+          description:
+            'Flatmate will never move to a paid model, and we plan to survive base on your donation. \
+            There are mayn ways to keep Flatmate alive, e.g. give your feedbacks on our website, \
+            check out the link below for more',
+          icon: 'fa-coins',
+          link: 'Support us',
+          outLink: 'https://github.com/ludanxer/flatmate',
+        },
+      ],
+    }
+  },
+}
+</script>
 
 <style scoped>
 .hero-link {
