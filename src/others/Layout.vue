@@ -1,5 +1,9 @@
 <template>
-  <div id="layout" class="h-full flex flex-col">
+  <div
+    id="layout"
+    class="flex flex-col"
+    :class="[$route.name == 'home' ? 'h-auto' : 'h-full']"
+  >
     <the-heading class="flex container h-16 mx-auto items-center">
       <component :is="currentComponent" />
     </the-heading>
