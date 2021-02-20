@@ -5,6 +5,7 @@
       'btn-warn': warn,
       'btn-danger': danger,
       'btn-primary': primary,
+      'btn-simple': simple,
       'btn-plain': plain,
       'btn-large': large,
       'btn-middle': !large,
@@ -26,6 +27,10 @@ export default {
       default: false,
     },
     plain: {
+      type: Boolean,
+      default: false,
+    },
+    simple: {
       type: Boolean,
       default: false,
     },
@@ -62,8 +67,13 @@ export default {
   @apply border-transparent text-white bg-primary-600 hover:bg-primary-700;
 }
 
-.btn-plain {
+.btn-simple {
   @apply border-gray-300 bg-white text-gray-700 hover:bg-gray-50;
+}
+
+/* not sure if there is a way in tailwind to remove transition on mouseout */
+.btn-plain {
+  @apply transition delay-100 border-none bg-white hover:bg-gray-200;
 }
 
 .btn-large {

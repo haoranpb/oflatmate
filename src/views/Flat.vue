@@ -6,10 +6,6 @@
       class="flex flex-row space-x-4 flex-grow"
     >
       <the-chore-list class="base-box" />
-      <div>
-        <the-invitation class="base-box" />
-        <the-announcement class="base-box" />
-      </div>
     </div>
     <div v-else>You don't have a flat yet, create one Now!</div>
   </div>
@@ -19,11 +15,9 @@
 import { mapMutations } from 'vuex'
 import TheFlatTrack from '@/components/singleton/TheFlatTrack.vue'
 import TheChoreList from '@/components/singleton/TheChoreList.vue'
-import TheInvitation from '@/components/singleton/TheInvitation.vue'
-import TheAnnouncement from '@/components/singleton/TheAnnouncement.vue'
 
 export default {
-  components: { TheFlatTrack, TheChoreList, TheInvitation, TheAnnouncement },
+  components: { TheFlatTrack, TheChoreList },
   mounted() {
     this.fetchFlats()
 
@@ -49,11 +43,7 @@ export default {
 }
 </script>
 
-<style>
-.empty-box {
-  @apply border-dashed border-2 border-gray-300 h-48;
-}
-
+<style scoped>
 .base-box {
   @apply rounded-md p-6 w-80;
 }

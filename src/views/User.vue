@@ -26,7 +26,7 @@
         </vf-button>
       </template>
       <template #close>
-        <vf-button plain large @click="deletePop = false" class="sm:ml-3">
+        <vf-button simple large @click="deletePop = false" class="sm:ml-3">
           Cancel
         </vf-button>
       </template>

@@ -1,6 +1,12 @@
 <template>
   <div v-if="schedule && scrollToCurrent()" id="chore-list">
-    <h3 class="text-xl mb-6 font-medium text-gray-600">Chore Schedule</h3>
+    <h3 class="text-xl font-medium text-gray-600">Chore Schedule</h3>
+    <vf-button title="shuffle" plain class="my-2" @click="generateSchedule">
+      <i class="fas fa-random text-gray-600 my-1"></i>
+    </vf-button>
+    <vf-button title="reset" plain class="my-2" @click="resetSchedule">
+      <i class="fas fa-undo text-gray-600 my-1"></i>
+    </vf-button>
     <draggable
       v-model="schedule"
       class="overflow-y-auto h-72"
@@ -30,7 +36,7 @@
     <p class="text-gray-500">
       It seems that you don't have a chore schedule yet, create one now👇
     </p>
-    <div class="flex flex-row my-4 justify-center">
+    <div class="flex flex-row mt-4 justify-center">
       <vf-select v-model="number" solid small>
         <option>1</option>
         <option selected>2</option>
@@ -43,6 +49,10 @@
         <option>month</option>
       </vf-select>
     </div>
+    <div class="flex flex-row justify-center mt-2 mb-3">
+      <span class="mx-1">starts from</span>
+      <vf-calender v-model="startDate" />
+    </div>
     <vf-button primary @click="generateSchedule" class="mt-1 mr-4 float-right">
       Generate
     </vf-button>
@@ -53,6 +63,8 @@
 import VfSelect from '@/components/vf/VfSelect.vue'
 import VfButton from '@/components/vf/VfButton.vue'
 import VfAvatarList from '@/components/vf/VfAvatarList.vue'
+import VfCalender from '@/components/vf/VfCalender.vue'
+import { shuffle } from '@/utils'
 import draggable from 'vuedraggable'
 import dayjs from 'dayjs'
 
@@ -61,9 +73,10 @@ export default {
     return {
       unit: 'week',
       number: 2,
+      startDate: null,
     }
   },
-  components: { VfSelect, VfButton, VfAvatarList, draggable },
+  components: { VfSelect, VfButton, VfAvatarList, draggable, VfCalender },
   methods: {
     generateSchedule() {
       const residentNum = this.$store.getters.currentFlat.member.length
@@ -80,7 +93,7 @@ export default {
         for (let i = 1; i <= residentNum - this.number; i++) arrTimes /= i
 
         const schedule = Array(arrTimes)
-          .fill(this.$store.getters.currentFlat.member)
+          .fill(shuffle(this.$store.getters.currentFlat.member))
           .flat()
           .reduce((arr, item, idx) => {
             return idx % this.number === 0
@@ -94,7 +107,7 @@ export default {
         this.$store.commit('genSchedule', {
           schedule: schedule,
           unit: this.unit,
-          start: dayjs().format('YYYY-MM-DD'),
+          start: this.startDate,
         })
       } else {
         console.log('error')
@@ -109,6 +122,9 @@ export default {
     },
     delScheduleAt(index) {
       this.$store.commit('delScheduleAt', index)
+    },
+    resetSchedule() {
+      this.$store.commit('resetSchedule')
     },
   },
   computed: {
@@ -147,5 +163,9 @@ export default {
 
 .current {
   @apply bg-yellow-100 bg-opacity-60;
+}
+
+.empty-box {
+  @apply border-dashed border-2 border-gray-300 h-56;
 }
 </style>

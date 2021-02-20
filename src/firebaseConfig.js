@@ -25,4 +25,5 @@ if (process.env.NODE_ENV == 'development') {
   db.useEmulator('localhost', emulatorConfig.firestore.port)
 }
 
+// firebase can be replaced with smaller field
 export { db, functions, auth, firebase }

@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { db } from '@/firebaseConfig'
+import { db, firebase } from '@/firebaseConfig'
 
 const store = createStore({
   state() {
@@ -54,16 +54,13 @@ const store = createStore({
       state.flats.push(newFlat)
     },
     genSchedule(state, scheduleObj) {
-      db.collection('flats')
-        .doc(state.currentFlatId)
-        .update({
-          chore: scheduleObj,
-        })
-        .then(() => {
-          state.flats.find(
-            (flat) => flat.id == state.currentFlatId
-          ).chore = scheduleObj
-        })
+      state.flats.find(
+        (flat) => flat.id == state.currentFlatId
+      ).chore = scheduleObj
+
+      db.collection('flats').doc(state.currentFlatId).update({
+        chore: scheduleObj,
+      })
     },
     updateSchedule(state, newSchedule) {
       // there should be a way to keep them in sync
@@ -87,6 +84,13 @@ const store = createStore({
             (flat) => flat.id == state.currentFlatId
           ).chore.schedule,
         })
+    },
+    resetSchedule(state) {
+      state.flats.find((flat) => flat.id == state.currentFlatId).chore = null
+
+      db.collection('flats').doc(state.currentFlatId).update({
+        chore: firebase.firestore.FieldValue.delete(),
+      })
     },
   },
   getters: {
