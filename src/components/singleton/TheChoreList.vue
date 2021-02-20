@@ -1,9 +1,6 @@
 <template>
   <div v-if="schedule && scrollToCurrent()" id="chore-list">
     <h3 class="text-xl font-medium text-gray-600">Chore Schedule</h3>
-    <vf-button title="shuffle" plain class="my-2" @click="generateSchedule">
-      <i class="fas fa-random text-gray-600 my-1"></i>
-    </vf-button>
     <vf-button title="reset" plain class="my-2" @click="resetSchedule">
       <i class="fas fa-undo text-gray-600 my-1"></i>
     </vf-button>
