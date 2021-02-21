@@ -1,5 +1,8 @@
 <template>
-  <div id="flat-track" class="bg-indigo-50 container flex py-4">
+  <div
+    id="flat-track"
+    class="bg-indigo-50 rounded-md flex py-4 overflow-x-auto flex-nowrap"
+  >
     <flat-item>
       <template #middle>
         <vf-input

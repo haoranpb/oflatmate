@@ -4,7 +4,7 @@
       <router-link to="/">Flatmate</router-link>
     </h1>
     <div class="flex-grow"></div>
-    <div class="flex space-x-6 pr-14">
+    <div class="flex space-x-6" :class="{ 'pr-14': $route.name == 'home' }">
       <slot></slot>
     </div>
   </nav>
