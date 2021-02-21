@@ -7,8 +7,7 @@
             Welcome to Flatmate
           </h1>
           <p class="leading-relaxed mt-4">
-            Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-            hammock starladder roathse. Craies vegan tousled etsy austin.
+            A platform driven by community to make flat sharing easier
           </p>
         </div>
         <div

@@ -78,13 +78,13 @@ export default {
           outLink: 'https://github.com/ludanxer/flatmate/projects',
         },
         {
-          title: 'Free Forever',
+          title: 'Community Driven',
           description:
             'Flatmate will never move to a paid model, and we plan to survive base on your donation. \
             There are mayn ways to keep Flatmate alive, e.g. give your feedbacks on our website, \
             check out the link below for more',
           icon: 'fa-coins',
-          link: 'Support us',
+          link: 'Help us improve',
           outLink: 'https://github.com/ludanxer/flatmate',
         },
       ],
