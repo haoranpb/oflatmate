@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { db, firebase } from '@/firebaseConfig'
+import { db, filedValDel } from '@/firebaseConfig'
 
 const store = createStore({
   state() {
@@ -89,7 +89,7 @@ const store = createStore({
       state.flats.find((flat) => flat.id == state.currentFlatId).chore = null
 
       db.collection('flats').doc(state.currentFlatId).update({
-        chore: firebase.firestore.FieldValue.delete(),
+        chore: filedValDel,
       })
     },
   },

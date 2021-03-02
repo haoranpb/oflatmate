@@ -24,7 +24,7 @@
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 import { DEFAULT_SIGNIN_PATH } from '@/utils'
-import { firebase } from '@/firebaseConfig'
+import { authProviders } from '@/firebaseConfig'
 
 export default {
   mounted() {
@@ -38,10 +38,7 @@ export default {
       // no auto refresh during login, but getCurrentUser in utils is still needed for user refresh
       signInFlow: 'popup',
       signInSuccessUrl: nextPath,
-      signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      ],
+      signInOptions: authProviders,
     })
   },
 }

@@ -25,5 +25,11 @@ if (import.meta.env.DEV) {
   db.useEmulator('localhost', emulators.firestore.port)
 }
 
-// firebase can be replaced with smaller field
-export { db, functions, auth, firebase }
+const authProviders = [
+  firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+]
+
+const filedValDel = firebase.firestore.FieldValue.delete()
+
+export { db, functions, auth, filedValDel, authProviders }
