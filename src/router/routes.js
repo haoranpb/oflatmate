@@ -17,11 +17,13 @@ const routes = [
       },
       {
         path: 'user',
+        name: 'user',
         component: User,
         meta: { requiresAuth: true },
       },
       {
         path: 'flat',
+        name: 'flat',
         component: Flat,
         meta: { requiresAuth: true },
       },

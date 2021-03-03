@@ -17,12 +17,22 @@
 import TheHeading from '@/components/singleton/TheHeading.vue'
 import HeadHome from '@/components/HeadHome.vue'
 import HeadUser from '@/components/HeadUser.vue'
+import HeadFlat from '@/components/HeadFlat.vue'
 
 export default {
   components: { TheHeading },
   computed: {
     currentComponent() {
-      return this.$route.name == 'home' ? HeadHome : HeadUser
+      switch (this.$route.name) {
+        case 'home':
+          return HeadHome
+        case 'user':
+          return HeadUser
+        case 'flat':
+          return HeadFlat
+        default:
+          return HeadHome
+      }
     },
   },
 }
