@@ -1,20 +1,6 @@
 <template>
   <div id="user" class="flex-col">
-    <div v-if="$user" class="flex flex-row w-full m-10 space-x-10">
-      <vf-avatar-item large :link="$user.photoURL" />
-      <div class="mt-4">
-        <h2 class="text-2xl font-medium">{{ $user.displayName }}</h2>
-        <p class="text-gray-600">{{ $user.email }}</p>
-      </div>
-    </div>
-    <div>
-      <h2 class="text-red-600 font-bold text-xl">Delete Account</h2>
-      <p>Once you delete your account, there is no going back.</p>
-      <vf-button large warn @click="deletePop = true">
-        Delete your account
-      </vf-button>
-    </div>
-    <warn-pop v-if="deletePop">
+    <vf-modal v-if="deletePop" warn>
       <template #title>Deactivate account</template>
       <template #description>
         Are you sure you want to deactivate your account? All of your data will
@@ -30,13 +16,28 @@
           Cancel
         </vf-button>
       </template>
-    </warn-pop>
+    </vf-modal>
+
+    <div v-if="$user" class="flex flex-row w-full m-10 space-x-10">
+      <vf-avatar-item large :link="$user.photoURL" />
+      <div class="mt-4">
+        <h2 class="text-2xl font-medium">{{ $user.displayName }}</h2>
+        <p class="text-gray-600">{{ $user.email }}</p>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-red-600 font-bold text-xl">Delete Account</h2>
+      <p>Once you delete your account, there is no going back.</p>
+      <vf-button large warn @click="deletePop = true">
+        Delete your account
+      </vf-button>
+    </div>
   </div>
 </template>
 
 <script>
 import VfButton from '@/components/vf/VfButton.vue'
-import WarnPop from '@/components/WarnPop.vue'
+import VfModal from '@/components/vf/VfModal.vue'
 import VfAvatarItem from '@/components/vf/VfAvatarItem.vue'
 
 export default {
@@ -45,7 +46,7 @@ export default {
       deletePop: false,
     }
   },
-  components: { VfButton, WarnPop, VfAvatarItem },
+  components: { VfButton, VfAvatarItem, VfModal },
   methods: {
     conformDelete() {
       this.$user
