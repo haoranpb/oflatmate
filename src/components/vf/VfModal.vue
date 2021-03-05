@@ -22,7 +22,7 @@
           <div class="sm:flex sm:items-start">
             <div
               class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10"
-              :class="{ 'bg-red-100': warn }"
+              :class="[warn ? 'bg-red-100' : 'bg-primary-100']"
             >
               <slot name="icon">
                 <svg
@@ -42,7 +42,7 @@
                 </svg>
               </slot>
             </div>
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
               <h3 class="text-lg leading-6 font-medium text-gray-900">
                 <slot name="title"></slot>
               </h3>
@@ -66,7 +66,7 @@ export default {
   props: {
     warn: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
 }
