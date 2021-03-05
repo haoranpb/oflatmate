@@ -47,9 +47,7 @@
                 <slot name="title"></slot>
               </h3>
               <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                  <slot name="description"></slot>
-                </p>
+                <slot name="content"></slot>
               </div>
             </div>
           </div>

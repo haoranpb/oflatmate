@@ -2,9 +2,11 @@
   <div id="user" class="flex-col">
     <vf-modal v-if="deletePop" warn>
       <template #title>Deactivate account</template>
-      <template #description>
-        Are you sure you want to deactivate your account? All of your data will
-        be permanently removed. This action cannot be undone.
+      <template #content>
+        <p class="text-sm text-gray-500">
+          Are you sure you want to deactivate your account? All of your data
+          will be permanently removed. This action cannot be undone.
+        </p>
       </template>
       <template #action>
         <vf-button large danger @click="conformDelete" class="sm:ml-3">
