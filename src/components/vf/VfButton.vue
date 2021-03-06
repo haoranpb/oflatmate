@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn btn-focus"
+    class="btn"
     :class="{
       'btn-warn': warn,
       'btn-danger': danger,
@@ -48,11 +48,7 @@ export default {
 
 <style scoped>
 .btn {
-  @apply text-sm font-medium inline-flex justify-center rounded-md border w-auto;
-}
-
-.btn-focus {
-  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+  @apply text-sm font-medium inline-flex justify-center rounded-md border w-auto outline-none;
 }
 
 .btn-warn {
