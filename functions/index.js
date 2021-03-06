@@ -1,35 +1,19 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-const nodemailer = require('nodemailer')
+const sgMail = require('@sendgrid/mail')
 
 let config, url
 // any better way to do this?
 if (Object.keys(functions.config()).length === 0) {
   config = require('./env.json').env
-  url = 'http://localhost:8080'
+  url = 'http://localhost:3000' // there should be a way to dynamic set urls
 } else {
   config = functions.config().env
-  url = 'https://flatmate-3a1eb.web.app'
+  url = 'https://oflatmate.net'
 }
 
-const transport = nodemailer.createTransport(
-  {
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      type: 'OAuth2',
-      user: config.email.user,
-      clientId: config.email.client.id,
-      clientSecret: config.email.client.secret,
-      refreshToken: config.email.token.refresh,
-      accessToken: config.email.token.access,
-    },
-  },
-  { from: `Open Flatmate <${config.email.user}>` }
-)
-
 admin.initializeApp()
+sgMail.setApiKey(config.email.secret)
 
 exports.getUsersInfo = functions
   .region('europe-west1')
@@ -51,11 +35,13 @@ exports.inviteToFlat = functions
 
     const invitationLink = `${url}/flat?invite=${docRef.id}&flat=${data.flatId}`
 
-    transport.sendMail({
+    // TODO: template in SendGrid
+    return sgMail.send({
       to: data.email,
+      from: `Open Flatmate <${config.email.user}>`,
       subject: `${data.flatName} -- Invitation`,
       html: `<p>${context.auth.token.name} invites you to join flat: ${data.flatName}</p>
-      <p>Click the link to join: ${invitationLink}</p>`,
+             <p>Click the link to join: ${invitationLink}</p>`,
     })
   })
 
