@@ -5,7 +5,7 @@ const sgMail = require('@sendgrid/mail')
 let config, url
 // any better way to do this?
 if (Object.keys(functions.config()).length === 0) {
-  config = require('./env.json').env
+  config = require('./env.json')
   url = 'http://localhost:3000' // there should be a way to dynamic set urls
 } else {
   config = functions.config().env
