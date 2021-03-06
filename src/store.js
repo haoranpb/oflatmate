@@ -36,7 +36,6 @@ const store = createStore({
       db.collection('flats')
         .add({
           name: newFlatName,
-          creator: state.user.uid,
           member: [state.user.uid],
         })
         .then((docRef) => {
