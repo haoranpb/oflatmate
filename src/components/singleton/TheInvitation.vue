@@ -1,30 +1,59 @@
 <template>
-  <div id="the-invitation" class="border m-px mb-6 h-48">
-    <h3>Invite your flatmates to join the flat</h3>
-    <vf-input
-      solid
-      class="my-3"
-      v-model="email"
-      placeholder="Add email"
-      :status="input.status"
-      :message="input.message"
-      @keypress="clearDanger"
-    />
-    <vf-button primary @click="invite" class="float-right mr-4 mt-2">
-      Invite
-    </vf-button>
-  </div>
+  <vf-button
+    plain
+    title="Invite your flatmates"
+    class="text-gray-500"
+    @click="showInvite = true"
+  >
+    <i class="fas fa-user-friends my-auto"></i>
+    <span class="text-lg ml-1">Invite</span>
+  </vf-button>
+
+  <vf-modal v-if="showInvite">
+    <template #title>
+      Invite your flatmates to join
+      <span class="text-primary-600 font-medium">{{
+        $store.getters.currentFlat.name
+      }}</span>
+    </template>
+    <template #icon>
+      <i class="fas fa-user-plus text-primary-500"></i>
+    </template>
+    <template #content>
+      <vf-input
+        solid
+        class="mt-3 w-5/6"
+        v-model="email"
+        placeholder="Add email"
+        :status="input.status"
+        :message="input.message"
+        @keypress="clearDanger"
+      />
+    </template>
+    <template #action>
+      <vf-button large primary @click="invite" class="sm:ml-3">
+        Invite
+      </vf-button>
+    </template>
+    <template #close>
+      <vf-button simple large @click="showInvite = false" class="sm:ml-3">
+        Cancel
+      </vf-button>
+    </template>
+  </vf-modal>
 </template>
 
 <script>
 import { validateInput } from '@/utils'
 import VfButton from '@/components/vf/VfButton.vue'
 import VfInput from '@/components/vf/VfInput.vue'
+import VfModal from '@/components/vf/VfModal.vue'
 
 export default {
-  components: { VfInput, VfButton },
+  components: { VfInput, VfButton, VfModal },
   data() {
     return {
+      showInvite: false,
       email: '',
       input: {
         status: null,
@@ -44,6 +73,9 @@ export default {
           email: result.data,
           flatName: this.$store.getters.currentFlat.name,
           flatId: this.$store.state.currentFlatId,
+        }).then(() => {
+          this.input.status = 'primay'
+          this.input.message = 'Invitation sent'
         })
       }
 

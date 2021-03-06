@@ -13,7 +13,13 @@
         'input-danger': status == 'danger',
       }"
     />
-    <p v-if="status" class="text-xs text-red-500 pt-1 h-5">{{ message }}</p>
+    <p
+      v-show="status"
+      class="text-xs text-red-500 pt-1 h-5"
+      :class="[status == 'danger' ? 'text-red-500' : 'text-primary-500']"
+    >
+      {{ message }}
+    </p>
   </div>
 </template>
 
