@@ -1,11 +1,11 @@
 <template>
   <img
     v-if="link"
-    class="rounded-full inline-block ring-2 ring-white"
+    class="inline-block avatar-ring"
     :class="sizeClass"
     :src="link"
   />
-  <i v-else class="fas fa-user-circle" :class="sizeIcon"></i>
+  <i v-else class="fas fa-user-circle avatar-ring" :class="sizeIcon"></i>
 </template>
 
 <script>
@@ -27,3 +27,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.avatar-ring {
+  @apply rounded-full ring-2 ring-white;
+}
+</style>
