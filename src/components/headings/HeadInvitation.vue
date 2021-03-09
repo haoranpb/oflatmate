@@ -6,7 +6,7 @@
     @click="showInvite = true"
   >
     <i class="fas fa-user-friends my-auto"></i>
-    <span class="text-lg ml-1">Invite</span>
+    <span class="text-lg ml-2">Invite</span>
   </vf-button>
 
   <vf-modal v-if="showInvite">
