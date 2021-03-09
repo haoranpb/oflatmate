@@ -38,17 +38,12 @@
 </template>
 
 <script>
-import VfButton from '@/components/vf/VfButton.vue'
-import VfModal from '@/components/vf/VfModal.vue'
-import VfAvatarItem from '@/components/vf/VfAvatarItem.vue'
-
 export default {
   data() {
     return {
       deletePop: false,
     }
   },
-  components: { VfButton, VfAvatarItem, VfModal },
   methods: {
     conformDelete() {
       this.$user

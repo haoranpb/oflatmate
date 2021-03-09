@@ -12,15 +12,11 @@
 </template>
 
 <script>
-import VfButton from '../vf/VfButton.vue'
-import VfTextarea from '../vf/VfTextarea.vue'
-
 export default {
   data() {
     return {
       message: '',
     }
   },
-  components: { VfTextarea, VfButton },
 }
 </script>

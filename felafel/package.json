@@ -1,0 +1,12 @@
+{
+  "name": "@oflatmate/felafel",
+  "version": "0.4.0",
+  "main": "index.js",
+  "repository": "https://github.com/ludanxer/oflatmate",
+  "author": "Haoran Sun",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "flatpickr": "^4.6.9"
+  }
+}

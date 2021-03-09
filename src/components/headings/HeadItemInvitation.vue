@@ -45,12 +45,8 @@
 
 <script>
 import { validateInput } from '@/utils'
-import VfButton from '@/components/vf/VfButton.vue'
-import VfInput from '@/components/vf/VfInput.vue'
-import VfModal from '@/components/vf/VfModal.vue'
 
 export default {
-  components: { VfInput, VfButton, VfModal },
   data() {
     return {
       showInvite: false,

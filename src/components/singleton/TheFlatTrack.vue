@@ -38,10 +38,7 @@
 
 <script>
 import { validateInput } from '@/utils'
-import VfButton from '@/components/vf/VfButton.vue'
-import VfInput from '@/components/vf/VfInput.vue'
 import FlatItem from '@/components/FlatItem.vue'
-import VfAvatarList from '@/components/vf/VfAvatarList.vue'
 
 export default {
   data() {
@@ -53,7 +50,7 @@ export default {
       },
     }
   },
-  components: { VfButton, VfInput, FlatItem, VfAvatarList },
+  components: { FlatItem },
   methods: {
     createFlat() {
       const result = validateInput(this.flatName, { length: 25 })

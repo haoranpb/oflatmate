@@ -57,10 +57,6 @@
 </template>
 
 <script>
-import VfSelect from '@/components/vf/VfSelect.vue'
-import VfButton from '@/components/vf/VfButton.vue'
-import VfAvatarList from '@/components/vf/VfAvatarList.vue'
-import VfCalender from '@/components/vf/VfCalender.vue'
 import { shuffle } from '@/utils'
 import draggable from 'vuedraggable'
 import dayjs from 'dayjs'
@@ -73,7 +69,7 @@ export default {
       startDate: new Date(),
     }
   },
-  components: { VfSelect, VfButton, VfAvatarList, draggable, VfCalender },
+  components: { draggable },
   methods: {
     generateSchedule() {
       const residentNum = this.$store.getters.currentFlat.member.length

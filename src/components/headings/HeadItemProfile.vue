@@ -31,15 +31,12 @@
 </template>
 
 <script>
-import VfAvatarItem from '@/components/vf/VfAvatarItem.vue'
-
 export default {
   data() {
     return {
       open: false,
     }
   },
-  components: { VfAvatarItem },
   mounted() {
     document.addEventListener('click', this.closeMenu)
   },

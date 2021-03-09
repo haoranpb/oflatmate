@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import VfAvatarItem from '@/components/vf/VfAvatarItem.vue'
+import VfAvatarItem from './VfAvatarItem.vue'
 
 export default {
   data() {

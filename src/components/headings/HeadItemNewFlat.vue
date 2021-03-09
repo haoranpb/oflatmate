@@ -4,11 +4,3 @@
     <span class="text-lg ml-2">New Flat</span>
   </vf-button>
 </template>
-
-<script>
-import VfButton from '@/components/vf/VfButton.vue'
-
-export default {
-  components: { VfButton },
-}
-</script>

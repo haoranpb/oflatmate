@@ -3,10 +3,11 @@ import App from './App.vue'
 import router from './router/index.js'
 import store from './store.js'
 import { userMixin } from './utils'
+import felafel from '@oflatmate/felafel'
 import { functions, auth } from './firebaseConfig'
 import 'tailwindcss/tailwind.css'
 
-const app = createApp(App).use(router).use(store)
+const app = createApp(App).use(router).use(store).use(felafel)
 
 // make $user available in every component
 app.mixin(userMixin)

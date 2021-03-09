@@ -1,16 +1,17 @@
 {
-  "name": "flatmate",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "workspaces": [
-    "functions"
+    "functions",
+    "src",
+    "felafel"
   ],
   "scripts": {
     "ci": "yarn install --frozen-lockfile --ignore-engines",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint src/**/*.{js,vue} functions/*.js *.js --fix",
+    "lint": "eslint src/**/*.{js,vue} felafel/*.{js,vue} functions/*.js *.js --fix",
     "emulate": "firebase emulators:start --import=./tmp-data --export-on-exit",
     "deploy:func": "firebase deploy --only functions",
     "env": "yarn env:unset && yarn env:set",
@@ -18,24 +19,9 @@
     "env:unset": "firebase functions:config:unset env"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.2.1",
+    "vite": "^2.0.5",
     "@vitejs/plugin-vue": "^1.1.5",
-    "@vue/compiler-sfc": "^3.0.7",
-    "autoprefixer": "^10.2.4",
-    "core-js": "^3.6.5",
-    "dayjs": "^1.10.4",
-    "dompurify": "^2.2.6",
-    "firebase": "^8.2.1",
-    "firebaseui": "^4.7.3",
-    "flatpickr": "^4.6.9",
-    "postcss": "^8.2.6",
-    "tailwindcss": "^2.0.3",
-    "validator": "^13.5.2",
-    "vite": "^2.0.4",
-    "vue": "^3.0.7",
-    "vue-router": "^4.0.2",
-    "vuedraggable": "^4.0.1",
-    "vuex": "^4.0.0"
+    "@vue/compiler-sfc": "^3.0.7"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
