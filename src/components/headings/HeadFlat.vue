@@ -5,8 +5,8 @@
 
 
 <script>
-import TheProfile from '@/components/singleton/TheProfile.vue'
-import TheInvitation from '@/components/singleton/TheInvitation.vue'
+import TheProfile from '@/components/headings/TheProfile.vue'
+import TheInvitation from '@/components/headings/TheInvitation.vue'
 
 export default {
   components: { TheProfile, TheInvitation },

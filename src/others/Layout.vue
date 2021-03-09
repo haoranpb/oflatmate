@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import TheHeading from '@/components/singleton/TheHeading.vue'
-import HeadHome from '@/components/HeadHome.vue'
-import HeadUser from '@/components/HeadUser.vue'
-import HeadFlat from '@/components/HeadFlat.vue'
+import TheHeading from '@/components/headings/TheHeading.vue'
+import HeadHome from '@/components/headings/HeadHome.vue'
+import HeadUser from '@/components/headings/HeadUser.vue'
+import HeadFlat from '@/components/headings/HeadFlat.vue'
 
 export default {
   components: { TheHeading },
