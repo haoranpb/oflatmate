@@ -49,42 +49,57 @@
         </feature-item>
       </div>
     </section>
+
+    <footer
+      class="text-gray-600 container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col"
+    >
+      <span class="ml-3 text-xl font-medium text-primary-700">OFlatmate</span>
+      <p
+        class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
+      >
+        © 2020 OFlatmate —
+        <outbound-link
+          href="https://github.com/ludanxer"
+          class="text-gray-600 ml-1"
+        >
+          @ludanxer
+        </outbound-link>
+      </p>
+    </footer>
   </div>
 </template>
 
 <script>
 import FeatureItem from '@/components/FeatureItem.vue'
+import OutboundLink from '@/components/OutboundLink.vue'
 
 export default {
-  components: { FeatureItem },
+  components: { FeatureItem, OutboundLink },
   data() {
     return {
       features: [
         {
           title: 'Open Source',
-          description: 'Flatmate is completely open sourced with MIT license',
-          icon: 'fa-code-branch',
-          link: 'Source Code',
+          description:
+            'With the community and transpirancy in mind, OFlatmate is completely open sourced under MIT license.',
+          icon: 'fa-code',
+          link: 'Help us improve',
           outLink: 'https://github.com/ludanxer/flatmate',
         },
         {
           title: 'Public Roadmap',
           description:
-            'Flatmate iterates fast and the next steps are always available in public, \
-            feel free to drop your opions on our plan so we can learn what you think about and \
-            move towards the right direction',
-          icon: 'fa-map',
+            'The next step of OFlatmate is always in public, share your input so we can move towards the right direction.',
+          icon: 'fa-road',
           link: 'Roadmap',
           outLink: 'https://github.com/ludanxer/flatmate/projects',
         },
         {
-          title: 'Community Driven',
+          title: 'Opt In',
           description:
-            'Flatmate will never move to a paid model, and we plan to survive base on your donation. \
-            There are mayn ways to keep Flatmate alive, e.g. give your feedbacks on our website, \
-            check out the link below for more',
-          icon: 'fa-coins',
-          link: 'Help us improve',
+            'Everything is turned off by default. No email notifications or analytic scripts unless you manully turn them on.',
+          icon: 'fa-check',
+          link: 'Doucmentation',
           outLink: 'https://github.com/ludanxer/flatmate',
         },
       ],
