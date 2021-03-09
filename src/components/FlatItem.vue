@@ -3,7 +3,7 @@
     <div class="pt-4 pb-3">
       <slot name="middle"></slot>
     </div>
-    <div class="float-right">
+    <div class="float-right h-14">
       <slot name="bottom"></slot>
     </div>
   </div>
