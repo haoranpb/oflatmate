@@ -133,7 +133,7 @@ export default {
     },
     diffByUnit() {
       return dayjs().diff(
-        this.$store.getters.currentFlat.chore.start,
+        dayjs.unix(this.$store.getters.currentFlat.chore.start.seconds),
         this.$store.getters.currentFlat.chore.unit
       )
     },
