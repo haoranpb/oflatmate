@@ -16,7 +16,7 @@
 
 <script>
 import TheHeading from '@/components/headings/TheHeading.vue'
-import HeadProfile from '@/components/headings/HeadProfile.vue'
+import HeadProfile from '@/components/headings/HeadItemProfile.vue'
 import HeadHome from '@/components/headings/HeadHome.vue'
 import HeadUser from '@/components/headings/HeadUser.vue'
 import HeadFlat from '@/components/headings/HeadFlat.vue'

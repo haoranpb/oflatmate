@@ -5,8 +5,8 @@
 
 
 <script>
-import HeadInvitation from '@/components/headings/HeadInvitation.vue'
-import HeadNewFlat from '@/components/headings/HeadNewFlat.vue'
+import HeadInvitation from '@/components/headings/HeadItemInvitation.vue'
+import HeadNewFlat from '@/components/headings/HeadItemNewFlat.vue'
 
 export default {
   components: { HeadInvitation, HeadNewFlat },
