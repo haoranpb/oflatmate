@@ -2,8 +2,12 @@
   <div v-if="schedule && scrollToCurrent()" id="chore-list">
     <h3 class="text-xl font-medium text-gray-600">Chore Schedule</h3>
     <vf-button title="reset" plain class="my-2" @click="resetSchedule">
-      <i class="fas fa-undo text-gray-600 my-1"></i>
+      <i class="fas fa-undo fa-fw text-gray-600 my-1"></i>
     </vf-button>
+    <vf-button title="edit" plain class="my-2" @click="showEdit = !showEdit">
+      <i class="fas fa-edit fa-fw text-gray-600 my-1"></i>
+    </vf-button>
+
     <draggable
       v-model="schedule"
       class="overflow-y-auto h-72"
@@ -20,11 +24,16 @@
           <i
             title="delete"
             @click="delScheduleAt(index)"
+            v-if="showEdit"
             class="flex fas fa-times fa-sm text-gray-500 my-auto"
           ></i>
           <vf-avatar-list class="my-auto" :members="element.workers" />
           <div class="flex-grow"></div>
-          <i title="handle" class="flex fas fa-grip-lines my-auto"></i>
+          <i
+            title="handle"
+            v-if="showEdit"
+            class="flex fas fa-grip-lines my-auto"
+          ></i>
         </div>
       </template>
     </draggable>
@@ -67,6 +76,7 @@ export default {
       unit: 'week',
       number: 2,
       startDate: new Date(),
+      showEdit: false,
     }
   },
   components: { draggable },
