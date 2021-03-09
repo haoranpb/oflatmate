@@ -1,14 +1,14 @@
 <template>
-  <the-invitation />
-  <the-profile />
+  <head-invitation />
+  <head-profile />
 </template>
 
 
 <script>
-import TheProfile from '@/components/headings/HeadProfile.vue'
-import TheInvitation from '@/components/headings/HeadInvitation.vue'
+import HeadProfile from '@/components/headings/HeadProfile.vue'
+import HeadInvitation from '@/components/headings/HeadInvitation.vue'
 
 export default {
-  components: { TheProfile, TheInvitation },
+  components: { HeadProfile, HeadInvitation },
 }
 </script>

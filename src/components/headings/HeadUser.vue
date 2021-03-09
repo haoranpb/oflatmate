@@ -5,13 +5,13 @@
   >
     Flats
   </router-link>
-  <the-profile />
+  <head-profile />
 </template>
 
 <script>
-import TheProfile from '@/components/headings/HeadProfile.vue'
+import HeadProfile from '@/components/headings/HeadProfile.vue'
 
 export default {
-  components: { TheProfile },
+  components: { HeadProfile },
 }
 </script>
