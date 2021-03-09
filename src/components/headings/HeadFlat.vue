@@ -1,14 +1,14 @@
 <template>
+  <head-new-flat />
   <head-invitation />
-  <head-profile />
 </template>
 
 
 <script>
-import HeadProfile from '@/components/headings/HeadProfile.vue'
 import HeadInvitation from '@/components/headings/HeadInvitation.vue'
+import HeadNewFlat from '@/components/headings/HeadNewFlat.vue'
 
 export default {
-  components: { HeadProfile, HeadInvitation },
+  components: { HeadInvitation, HeadNewFlat },
 }
 </script>
