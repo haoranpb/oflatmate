@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TheProfile from '@/components/headings/TheProfile.vue'
+import TheProfile from '@/components/headings/HeadProfile.vue'
 
 export default {
   components: { TheProfile },

@@ -5,7 +5,7 @@
 
 
 <script>
-import TheProfile from '@/components/headings/HeadProfile.vue'
+import TheProfile from '@/components/singleton/TheProfile.vue'
 import TheInvitation from '@/components/headings/HeadInvitation.vue'
 
 export default {
