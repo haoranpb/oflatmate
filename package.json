@@ -10,7 +10,7 @@
     "ci": "yarn install --frozen-lockfile --ignore-engines",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
+    "serve": "vite preview --port=3000",
     "lint": "eslint src/**/*.{js,vue} felafel/*.{js,vue} functions/*.js *.js --fix",
     "emulate": "firebase emulators:start --import=./tmp-data --export-on-exit",
     "deploy:func": "firebase deploy --only functions",
