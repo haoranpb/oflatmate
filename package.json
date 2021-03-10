@@ -19,9 +19,9 @@
     "env:unset": "firebase functions:config:unset env"
   },
   "dependencies": {
-    "vite": "^2.0.5",
     "@vitejs/plugin-vue": "^1.1.5",
-    "@vue/compiler-sfc": "^3.0.7"
+    "@vue/compiler-sfc": "^3.0.7",
+    "vite": "^2.0.5"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
