@@ -113,6 +113,7 @@ export default {
           start: this.startDate,
         })
       } else {
+        // TODO: pop a warning notification
         console.log('error')
       }
     },
@@ -142,6 +143,7 @@ export default {
       },
     },
     diffByUnit() {
+      // TODO: start.seconds is only available when fetching from firestore
       return dayjs().diff(
         dayjs.unix(this.$store.getters.currentFlat.chore.start.seconds),
         this.$store.getters.currentFlat.chore.unit
