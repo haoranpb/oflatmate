@@ -5,7 +5,12 @@
       :key="member.uid"
       :link="member.photoURL"
     />
-    <vf-avatar-item v-if="plus" :plus="plus" @click="$emit('clickPlus')" />
+    <vf-avatar-item
+      v-if="plus"
+      :plus="plus"
+      class="cursor-pointer"
+      @click="$emit('clickPlus')"
+    />
   </div>
 </template>
 
