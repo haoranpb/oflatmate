@@ -5,6 +5,11 @@
     :class="sizeClass"
     :src="link"
   />
+  <i
+    v-else-if="plus"
+    class="fas fa-plus-circle avatar-ring bg-white text-gray-400"
+    :class="sizeIcon"
+  ></i>
   <i v-else class="fas fa-user-circle avatar-ring" :class="sizeIcon"></i>
 </template>
 
@@ -13,6 +18,10 @@ export default {
   props: {
     link: String,
     large: {
+      type: Boolean,
+      default: false,
+    },
+    plus: {
       type: Boolean,
       default: false,
     },
