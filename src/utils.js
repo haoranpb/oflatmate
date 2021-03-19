@@ -73,7 +73,7 @@ function validateInput(input, { email = false, length = false }) {
 const userMixin = {
   computed: {
     $user() {
-      return this.$store.state.user
+      return this.$store.state.user.user
     },
   },
 }

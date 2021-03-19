@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
-import store from './store.js'
+import store from './store/index.js'
 import { userMixin } from './utils'
 import felafel from '@oflatmate/felafel'
 import { functions, auth } from './firebaseConfig'

@@ -1,28 +1,20 @@
-import { createStore } from 'vuex'
 import { db, filedValDel } from '@/firebaseConfig'
 
-const store = createStore({
+const flat = {
   state() {
     return {
-      user: null,
       flats: [],
       currentFlatId: null,
     }
   },
   mutations: {
-    setUser(state, newUser) {
-      state.user = newUser
-    },
-    clearUser(state) {
-      state.user = null
-    },
     setCurrentFlatId(state, fid) {
       state.currentFlatId = fid
     },
-    fetchFlats(state) {
+    fetchFlats(state, uid) {
       // error in strict mode, querySnapshot is Proxy
       db.collection('flats')
-        .where('member', 'array-contains', state.user.uid)
+        .where('member', 'array-contains', uid)
         .get()
         .then((querySnapshot) => {
           state.flats = querySnapshot.docs.map((doc) =>
@@ -32,18 +24,17 @@ const store = createStore({
           state.currentFlatId = querySnapshot.empty ? null : state.flats[0].id
         })
     },
-    createFlat(state, newFlatName) {
+    createFlat(state, { uid, flatName }) {
       db.collection('flats')
         .add({
-          name: newFlatName,
-          member: [state.user.uid],
+          name: flatName,
+          member: [uid],
         })
         .then((docRef) => {
-          // duplicate code with appendFlat, consider make it action
           state.flats.push({
             id: docRef.id,
-            name: newFlatName,
-            member: [state.user.uid],
+            name: flatName,
+            member: [uid],
           })
 
           state.currentFlatId = docRef.id
@@ -52,6 +43,7 @@ const store = createStore({
     appendFlat(state, newFlat) {
       state.flats.push(newFlat)
     },
+    // schedule, potentially move to a nested file
     genSchedule(state, scheduleObj) {
       state.flats.find(
         (flat) => flat.id == state.currentFlatId
@@ -92,6 +84,14 @@ const store = createStore({
       })
     },
   },
+  actions: {
+    fetchFlats({ commit, rootState }) {
+      commit('fetchFlats', rootState.user.user.uid)
+    },
+    createFlat({ commit, rootState }, flatName) {
+      commit('createFlat', { uid: rootState.user.user.uid, flatName })
+    },
+  },
   getters: {
     // getters shouldn't return Proxy type
     currentFlat(state) {
@@ -101,6 +101,6 @@ const store = createStore({
       return (flatId) => state.flats.find((flat) => flat.id == flatId)
     },
   },
-})
+}
 
-export default store
+export default flat

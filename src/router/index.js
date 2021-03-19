@@ -13,7 +13,7 @@ router.beforeEach(async (to) => {
   /*
     Check authentication status before route entering, vuex is lost after refresh
   */
-  if (to.meta.requiresAuth && !store.state.user) {
+  if (to.meta.requiresAuth && !store.state.user.user) {
     const user = await getCurrentUser(auth)
     if (!user) {
       return '/authentication'

@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     flats() {
-      return this.$store.state.flats
+      return this.$store.state.flat.flats
     },
   },
 }

@@ -120,14 +120,14 @@ export default {
             this.$func('inviteToFlat', {
               email: validateResult.data,
               flatName: this.$store.getters.currentFlat.name,
-              flatId: this.$store.state.currentFlatId,
+              flatId: this.$store.state.flat.currentFlatId,
             }).then(() => {
               this.input.status = 'primay'
               this.input.message = 'Invitation sent'
             })
             break
           case 'create':
-            this.$store.commit('createFlat', validateResult.data)
+            this.$store.dispatch('createFlat', validateResult.data)
             this.closeModal()
             break
         }

@@ -2,7 +2,7 @@
   <div id="flat">
     <the-flat-track class="mb-4" />
     <div
-      v-if="$store.state.currentFlatId"
+      v-if="$store.state.flat.currentFlatId"
       class="flex flex-row space-x-4 flex-grow"
     >
       <the-chore-list class="base-box" />
@@ -19,7 +19,7 @@ import TheChoreList from '@/components/singleton/TheChoreList.vue'
 export default {
   components: { TheFlatTrack, TheChoreList },
   mounted() {
-    this.fetchFlats()
+    this.$store.dispatch('fetchFlats')
 
     // handles invitation
     if (Object.keys(this.$route.query).length != 0) {
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['fetchFlats', 'setCurrentFlatId', 'appendFlat']),
+    ...mapMutations(['setCurrentFlatId', 'appendFlat']),
   },
 }
 </script>
