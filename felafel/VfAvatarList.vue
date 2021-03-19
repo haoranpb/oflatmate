@@ -36,5 +36,12 @@ export default {
       this.users = result.data.users
     })
   },
+  watch: {
+    members() {
+      this.$func('getUsersInfo', this.members).then((result) => {
+        this.users = result.data.users
+      })
+    },
+  },
 }
 </script>
