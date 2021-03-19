@@ -20,9 +20,48 @@
       <span class="mx-1">starts from</span>
       <vf-calender v-model="startDate" />
     </div>
+    <div>
+      <vf-avatar-list
+        :members="$store.getters.currentFlat.member"
+        :plus="true"
+        @clickPlus="showDummy = true"
+      />
+    </div>
     <vf-button primary @click="generateSchedule" class="mt-1 mr-4 float-right">
       Generate
     </vf-button>
+
+    <vf-modal v-if="showDummy">
+      <template #title>Create a temparary account</template>
+      <template #icon>
+        <i class="fas fa-ghost text-primary-500"></i>
+      </template>
+      <template #content>
+        <p class="text-gray-700 text-sm">
+          Add a dummy account to the chore schedule if your flatmate hasn't
+          accept your invitation to join yet
+        </p>
+        <vf-input
+          solid
+          class="mt-3 w-5/6"
+          v-model="inputText"
+          placeholder="Dummy user name"
+          :status="input.status"
+          :message="input.message"
+          @keypress="clearDanger"
+        />
+      </template>
+      <template #action>
+        <vf-button large primary @click="createDummy" class="sm:ml-3">
+          Create
+        </vf-button>
+      </template>
+      <template #close>
+        <vf-button simple large @click="showDummy = false" class="sm:ml-3">
+          Cancel
+        </vf-button>
+      </template>
+    </vf-modal>
   </div>
 </template>
 
@@ -35,9 +74,24 @@ export default {
       unit: 'week',
       number: 2,
       startDate: new Date(),
+      // dummy
+      showDummy: false,
+      inputText: '',
+      input: {
+        status: null,
+        message: null,
+      },
     }
   },
   methods: {
+    clearDanger() {
+      this.input.status = null
+      this.input.message = null
+    },
+    createDummy() {
+      // TODO
+      console.log(this.inputText)
+    },
     generateSchedule() {
       const residentNum = this.$store.getters.currentFlat.member.length
       /*
@@ -80,6 +134,6 @@ export default {
 
 <style scoped>
 .empty-box {
-  @apply border-dashed border-2 border-gray-300 h-56;
+  @apply border-dashed border-2 border-gray-300 h-64;
 }
 </style>
