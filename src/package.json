@@ -14,10 +14,8 @@
     "@tailwindcss/forms": "^0.2.1",
     "@oflatmate/felafel": "0.4.0",
     "dayjs": "^1.10.4",
-    "dompurify": "^2.2.6",
     "firebase": "^8.2.1",
     "firebaseui": "^4.7.3",
-    "validator": "^13.5.2",
     "vuedraggable": "^4.0.1"
   },
   "devDependencies": {

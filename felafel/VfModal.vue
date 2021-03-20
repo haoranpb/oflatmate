@@ -1,73 +1,98 @@
 <template>
-  <div class="fixed z-10 inset-0 overflow-y-auto">
-    <div
-      class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-    >
-      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-      </div>
-      <span
-        class="hidden sm:inline-block sm:align-middle sm:h-screen"
-        aria-hidden="true"
-      >
-        &#8203;
-      </span>
-      <div
-        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-headline"
-      >
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div class="sm:flex sm:items-start">
-            <div
-              class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10"
-              :class="[warn ? 'bg-red-100' : 'bg-primary-100']"
-            >
-              <slot name="icon">
-                <svg
-                  class="h-6 w-6 text-red-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  />
-                </svg>
-              </slot>
-            </div>
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-              <h3 class="text-lg leading-6 font-medium text-gray-900">
-                <slot name="title"></slot>
-              </h3>
-              <div class="mt-2">
-                <slot name="content"></slot>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <slot name="action"></slot>
-          <slot name="close"></slot>
-        </div>
-      </div>
-    </div>
-  </div>
+  <vf-modal-base v-if="showModal" :warning="options.type == 'warning'">
+    <template #title>
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        {{ options.title }}
+      </h3>
+    </template>
+    <template #icon>
+      <i
+        class="fas"
+        :class="[
+          options.type == 'warning' ? 'text-red-500' : 'text-primary-500',
+          options.icon,
+        ]"
+      ></i>
+    </template>
+    <template #content>
+      <p class="text-sm text-gray-500" v-if="options.content">
+        {{ options.content }}
+      </p>
+      <vf-input
+        solid
+        class="mt-3 w-5/6"
+        v-if="options.type == 'dialog'"
+        v-model="inputText"
+        :placeholder="options.dialog.placeholder"
+        :status="input.status"
+        :message="input.message"
+        @keypress="clearDanger"
+      />
+    </template>
+    <template #action>
+      <vf-button large danger @click="actionCallback" class="sm:ml-3">
+        {{ options.action.title }}
+      </vf-button>
+    </template>
+    <template #close>
+      <vf-button simple large @click="showModal = false" class="sm:ml-3">
+        Cancel
+      </vf-button>
+    </template>
+  </vf-modal-base>
 </template>
 
 <script>
+import VfModalBase from './VfModalBase.vue'
+import { validateInput } from './utils.js'
+
 export default {
-  props: {
-    warn: {
-      type: Boolean,
-      default: false,
+  data() {
+    return {
+      showModal: false,
+      options: null,
+      inputText: '',
+      input: {
+        status: null,
+        message: null,
+      },
+    }
+  },
+  components: { VfModalBase },
+  methods: {
+    handleModalOpen(e) {
+      this.options = e.detail
+      this.showModal = true
     },
+    actionCallback() {
+      if (this.options.type == 'dialog') {
+        const validResult = validateInput(
+          this.inputText,
+          this.options.dialog.validation
+        )
+        if (validResult.error) {
+          this.input.status = 'danger'
+          this.input.message = validResult.message
+        } else {
+          this.options.action.callback(validResult)
+          this.inputText = ''
+          this.showModal = false
+        }
+      } else {
+        this.options.action.callback()
+        this.showModal = false
+      }
+    },
+    clearDanger() {
+      this.input.status = null
+      this.input.message = null
+    },
+  },
+  mounted() {
+    document.addEventListener('vfModal:open', this.handleModalOpen)
+  },
+  beforeUnmount() {
+    document.removeEventListener('vfModal:open', this.handleModalOpen)
   },
 }
 </script>

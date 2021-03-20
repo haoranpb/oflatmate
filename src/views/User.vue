@@ -1,25 +1,5 @@
 <template>
   <div id="user" class="flex-col">
-    <vf-modal v-if="deletePop" warn>
-      <template #title>Deactivate account</template>
-      <template #content>
-        <p class="text-sm text-gray-500">
-          Are you sure you want to deactivate your account? All of your data
-          will be permanently removed. This action cannot be undone.
-        </p>
-      </template>
-      <template #action>
-        <vf-button large danger @click="conformDelete" class="sm:ml-3">
-          Deactivate
-        </vf-button>
-      </template>
-      <template #close>
-        <vf-button simple large @click="deletePop = false" class="sm:ml-3">
-          Cancel
-        </vf-button>
-      </template>
-    </vf-modal>
-
     <div v-if="$user" class="flex flex-row w-full m-10 space-x-10">
       <vf-avatar-item large :link="$user.photoURL" />
       <div class="mt-4">
@@ -30,7 +10,7 @@
     <div>
       <h2 class="text-red-600 font-bold text-xl">Delete Account</h2>
       <p>Once you delete your account, there is no going back.</p>
-      <vf-button large warn @click="deletePop = true">
+      <vf-button large warn @click="handleDelete">
         Delete your account
       </vf-button>
     </div>
@@ -39,23 +19,31 @@
 
 <script>
 export default {
-  data() {
-    return {
-      deletePop: false,
-    }
-  },
   methods: {
-    conformDelete() {
-      this.$user
-        .delete()
-        .then(() => {
-          this.$user = null
-          this.$router.push('/authentication')
-        })
-        .catch(() => {
-          // TODO: To delete a user, the user must have signed in recently.
-          // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
-        })
+    handleDelete() {
+      this.$vfModal({
+        title: 'Deactivate account',
+        icon: 'fa-exclamation-triangle',
+        type: 'warning',
+        content:
+          'Are you sure you want to deactivate your account? All of your data \
+          will be permanently removed. This action cannot be undone.',
+        action: {
+          title: 'Deactivate',
+          callback: () => {
+            this.$user
+              .delete()
+              .then(() => {
+                this.$store.commit('clearUser')
+                this.$router.push('/authentication')
+              })
+              .catch(() => {
+                // TODO: To delete a user, the user must have signed in recently.
+                // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
+              })
+          },
+        },
+      })
     },
   },
 }
