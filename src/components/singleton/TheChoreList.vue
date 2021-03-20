@@ -68,6 +68,7 @@ export default {
       }
     },
     resetSchedule() {
+      // How to achieve this behavior with vf-modal?
       if (confirm('Are you sure to reset the chore schedule?')) {
         this.$store.commit('resetSchedule')
       }

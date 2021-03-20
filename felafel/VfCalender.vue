@@ -9,6 +9,8 @@
 </template>
 
 <script>
+// Consider moving to native input[type=date],
+// Safari doesn't have support
 import flatPickr from 'flatpickr'
 import 'flatpickr/dist/flatpickr.css'
 
