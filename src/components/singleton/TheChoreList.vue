@@ -63,10 +63,14 @@ export default {
       return true
     },
     delScheduleAt(index) {
-      this.$store.commit('delScheduleAt', index)
+      if (confirm('Are you sure to delete the schedule entry?')) {
+        this.$store.commit('delScheduleAt', index)
+      }
     },
     resetSchedule() {
-      this.$store.commit('resetSchedule')
+      if (confirm('Are you sure to reset the chore schedule?')) {
+        this.$store.commit('resetSchedule')
+      }
     },
   },
   computed: {
