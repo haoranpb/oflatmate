@@ -35,7 +35,7 @@
       </vf-button>
     </template>
     <template #close>
-      <vf-button simple large @click="showModal = false" class="sm:ml-3">
+      <vf-button simple large @click="closeModal" class="sm:ml-3">
         Cancel
       </vf-button>
     </template>
@@ -86,6 +86,10 @@ export default {
     clearDanger() {
       this.input.status = null
       this.input.message = null
+    },
+    closeModal() {
+      this.showModal = false
+      this.clearDanger()
     },
   },
   mounted() {
