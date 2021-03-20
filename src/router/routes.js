@@ -33,7 +33,7 @@ const routes = [
     path: '/authentication',
     component: () => import('@/views/Authentication.vue'),
     beforeEnter: () => {
-      if (store.state.user) {
+      if (store.state.user.user) {
         return DEFAULT_SIGNIN_PATH
       }
     },
