@@ -36,6 +36,7 @@ export default {
   },
   emits: ['clickPlus'],
   methods: {
+    // TODO: pass as a prop to de-couple from src
     getUserDetail() {
       // cache user info in vuex
       this.$func('getUsersInfo', this.members).then((result) => {
