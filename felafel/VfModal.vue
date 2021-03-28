@@ -1,5 +1,5 @@
 <template>
-  <vf-modal-base v-if="showModal" :warning="options.type == 'warning'">
+  <vf-modal-base v-if="showModal" :warning="isWarning">
     <template #title>
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         {{ options.title }}
@@ -8,10 +8,7 @@
     <template #icon>
       <i
         class="fas"
-        :class="[
-          options.type == 'warning' ? 'text-red-500' : 'text-primary-500',
-          options.icon,
-        ]"
+        :class="[isWarning ? 'text-red-500' : 'text-primary-500', options.icon]"
       ></i>
     </template>
     <template #content>
@@ -59,6 +56,11 @@ export default {
     }
   },
   components: { VfModalBase },
+  computed: {
+    isWarning() {
+      return this.options.type == 'warning'
+    },
+  },
   methods: {
     handleModalOpen(e) {
       this.options = e.detail
