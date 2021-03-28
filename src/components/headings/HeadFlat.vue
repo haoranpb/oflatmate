@@ -32,48 +32,52 @@ export default {
           id: 'invite',
         },
       ],
-      modalObj: {
-        invite: {
-          title: 'Invite your flatmates to join',
-          icon: 'fa-user',
-          type: 'dialog',
-          dialog: {
-            placeholder: 'Add Email',
-            validation: { email: true },
-          },
-          action: {
-            title: 'Invite',
-            callback: (validResult) => {
-              this.$func('inviteToFlat', {
-                email: validResult.data,
-                flatName: this.$store.getters.currentFlat.name,
-                flatId: this.$store.state.flat.currentFlatId,
-              })
-            },
-          },
-        },
-        create: {
-          title: 'Create a new flat',
-          icon: 'fa-home',
-          type: 'dialog',
-          dialog: {
-            placeholder: 'Flat Name',
-            validation: { length: 25 },
-          },
-          action: {
-            title: 'Create',
-            callback: (validResult) => {
-              this.$store.dispatch('createFlat', validResult.data)
-            },
-          },
-        },
-      },
     }
   },
   methods: {
     openModal({ currentTarget }) {
-      const modalOptions = this.modalObj[currentTarget.id]
+      const modalOptions = this.getModalOption(currentTarget.id)
       this.$vfModal(modalOptions)
+    },
+    getModalOption(type) {
+      switch (type) {
+        case 'invite':
+          return {
+            title: 'Invite your flatmates to join',
+            icon: 'fa-user',
+            type: 'dialog',
+            dialog: {
+              placeholder: 'Add Email',
+              validation: { email: true },
+            },
+            action: {
+              title: 'Invite',
+              callback: (validResult) => {
+                this.$func('inviteToFlat', {
+                  email: validResult.data,
+                  flatName: this.$store.getters.currentFlat.name,
+                  flatId: this.$store.state.flat.currentFlatId,
+                })
+              },
+            },
+          }
+        case 'create':
+          return {
+            title: 'Create a new flat',
+            icon: 'fa-home',
+            type: 'dialog',
+            dialog: {
+              placeholder: 'Flat Name',
+              validation: { length: 25 },
+            },
+            action: {
+              title: 'Create',
+              callback: (validResult) => {
+                this.$store.dispatch('createFlat', validResult.data)
+              },
+            },
+          }
+      }
     },
   },
 }
