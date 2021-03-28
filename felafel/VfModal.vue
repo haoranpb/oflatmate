@@ -3,6 +3,9 @@
     <template #title>
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         {{ options.title }}
+        <span class="text-primary-600 font-medium">
+          {{ options.titleTail }}
+        </span>
       </h3>
     </template>
     <template #icon>

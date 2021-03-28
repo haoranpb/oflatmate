@@ -44,6 +44,7 @@ export default {
         case 'invite':
           return {
             title: 'Invite your flatmates to join',
+            titleTail: this.$store.getters.currentFlat.name,
             icon: 'fa-user',
             type: 'dialog',
             dialog: {
