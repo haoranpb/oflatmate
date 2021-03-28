@@ -21,11 +21,7 @@
       <vf-calender v-model="startDate" />
     </div>
     <div>
-      <vf-avatar-list
-        :members="$store.getters.currentFlat.member"
-        :plus="true"
-        @clickPlus="createDummy"
-      />
+      <vf-avatar-list :members="$store.getters.currentFlat.member" />
     </div>
     <vf-button primary @click="generateSchedule" class="mt-1 mr-4 float-right">
       Generate
@@ -45,26 +41,6 @@ export default {
     }
   },
   methods: {
-    createDummy() {
-      this.$vfModal({
-        title: 'Create a temparary account',
-        content:
-          "Add a dummy account to the chore schedule if your flatmate hasn't \
-          accept your invitation to join yet",
-        icon: 'fa-ghost',
-        type: 'dialog',
-        dialog: {
-          placeholder: 'Dummy user name',
-          validation: { length: 15 },
-        },
-        action: {
-          title: 'Create',
-          callback: (validResult) => {
-            console.log(validResult)
-          },
-        },
-      })
-    },
     generateSchedule() {
       const residentNum = this.$store.getters.currentFlat.member.length
       /*

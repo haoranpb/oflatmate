@@ -5,12 +5,6 @@
       :key="member.uid"
       :link="member.photoURL"
     />
-    <vf-avatar-item
-      v-if="plus"
-      :plus="plus"
-      class="cursor-pointer"
-      @click="$emit('clickPlus')"
-    />
   </div>
 </template>
 
@@ -29,12 +23,7 @@ export default {
       type: Array,
       required: true,
     },
-    plus: {
-      type: Boolean,
-      default: false,
-    },
   },
-  emits: ['clickPlus'],
   methods: {
     // TODO: pass as a prop to de-couple from src
     getUserDetail() {
