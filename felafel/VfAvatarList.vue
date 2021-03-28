@@ -38,13 +38,13 @@ export default {
   mounted() {
     // cache user info in vuex
     this.$func('getUsersInfo', this.members).then((result) => {
-      this.users = result.data.users
+      this.users = result.data.users.concat(result.data.notFound)
     })
   },
   watch: {
     members() {
       this.$func('getUsersInfo', this.members).then((result) => {
-        this.users = result.data.users
+        this.users = result.data.users.concat(result.data.notFound)
       })
     },
   },
