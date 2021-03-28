@@ -48,6 +48,6 @@ const userMixin = {
   },
 }
 
-const DEFAULT_SIGNIN_PATH = '/user'
+const DEFAULT_SIGNIN_PATH = '/flat'
 
 export { getCurrentUser, shuffle, userMixin, DEFAULT_SIGNIN_PATH }
