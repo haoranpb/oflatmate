@@ -1,7 +1,7 @@
 <template>
   <div
     id="flat-track"
-    class="bg-indigo-50 rounded-md flex py-4 overflow-x-auto flex-nowrap"
+    class="bg-indigo-50 rounded-md flex py-4 overflow-x-auto flex-nowrap h-36"
   >
     <template v-if="flats">
       <flat-item
