@@ -27,7 +27,13 @@
       />
     </template>
     <template #action>
-      <vf-button large danger @click="actionCallback" class="sm:ml-3">
+      <vf-button
+        large
+        :danger="isWarning"
+        :primary="!isWarning"
+        @click="actionCallback"
+        class="sm:ml-3"
+      >
         {{ options.action.title }}
       </vf-button>
     </template>
