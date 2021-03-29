@@ -4,6 +4,7 @@ import Layout from '@/others/Layout.vue'
 import User from '@/views/User.vue'
 import Home from '@/views/Home.vue'
 import Flat from '@/views/Flat.vue'
+import Profile from '@/components/settings/Profile.vue'
 
 const routes = [
   {
@@ -20,6 +21,13 @@ const routes = [
         name: 'user',
         component: User,
         meta: { requiresAuth: true },
+        children: [
+          {
+            path: 'profile',
+            name: 'profile',
+            component: Profile,
+          },
+        ],
       },
       {
         path: 'flat',
