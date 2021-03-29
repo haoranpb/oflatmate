@@ -1,17 +1,14 @@
 <template>
-  <img
-    v-if="link"
-    class="inline-block avatar-ring"
-    :class="sizeClass"
-    :src="link"
-  />
-  <i v-else class="fas fa-user-circle avatar-ring" :class="sizeIcon"></i>
+  <img class="inline-block avatar-ring" :class="sizeClass" :src="avatarUrl" />
 </template>
 
 <script>
 export default {
   props: {
-    link: String,
+    link: {
+      type: String,
+      default: './user-circle-solid.svg',
+    },
     large: {
       type: Boolean,
       default: false,
@@ -21,8 +18,8 @@ export default {
     sizeClass() {
       return this.large ? ['h-24', 'w-24'] : ['h-8', 'w-8']
     },
-    sizeIcon() {
-      return this.large ? 'text-8xl' : 'fa-2x'
+    avatarUrl() {
+      return this.link ? this.link : './user-circle-solid.svg'
     },
   },
 }
