@@ -1,15 +1,30 @@
 <template>
   <div v-if="users" class="flex -space-x-2 overflow-hidden">
-    <vf-avatar-item
+    <tippy
+      :allowHTML="true"
+      theme="light"
+      placement="top-start"
       v-for="member in users"
       :key="member.uid"
-      :link="member.photoURL"
-    />
+    >
+      <vf-avatar-item :link="member.photoURL" />
+
+      <template #content>
+        <div class="flex flex-row space-x-2">
+          <vf-avatar-item :link="member.photoURL" />
+          <div class="flex flex-col">
+            <h3 class="font-medium">{{ member.displayName }}</h3>
+            <h4 class="text-gray-500">{{ member.email || 'Deleted User' }}</h4>
+          </div>
+        </div>
+      </template>
+    </tippy>
   </div>
 </template>
 
 <script>
 import VfAvatarItem from './VfAvatarItem.vue'
+import { Tippy } from 'vue-tippy'
 
 export default {
   data() {
@@ -17,7 +32,7 @@ export default {
       users: null,
     }
   },
-  components: { VfAvatarItem },
+  components: { VfAvatarItem, Tippy },
   props: {
     members: {
       type: Array,

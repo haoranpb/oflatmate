@@ -6,6 +6,8 @@ import VfCalender from './VfCalender.vue'
 import VfButton from './VfButton.vue'
 import VfAvatarList from './VfAvatarList.vue'
 import VfAvatarItem from './VfAvatarItem.vue'
+import 'tippy.js/dist/tippy.css'
+import 'tippy.js/themes/light.css'
 
 // there may be a better way to import all these components
 export default {

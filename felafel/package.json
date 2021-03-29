@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "flatpickr": "^4.6.9",
     "dompurify": "^2.2.6",
-    "validator": "^13.5.2"
+    "flatpickr": "^4.6.9",
+    "validator": "^13.5.2",
+    "vue-tippy": "^6.0.0-alpha.28"
   }
 }
