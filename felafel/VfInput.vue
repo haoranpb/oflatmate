@@ -3,6 +3,7 @@
     <input
       class="input"
       :type="type"
+      :disabled="disabled"
       autocomplete="off"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -29,6 +30,7 @@ export default {
   props: {
     solid: { type: Boolean, default: false },
     type: { type: String, default: 'text' },
+    disabled: { type: Boolean, default: false },
     status: { type: String },
     trailer: { type: Boolean, default: false },
     message: { type: String },
