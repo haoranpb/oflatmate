@@ -28,13 +28,10 @@ export default {
       switch (this.$route.name) {
         case 'home':
           return HeadHome
-        // need a clever way to solve this
-        case 'profile':
-          return HeadUser
         case 'flat':
           return HeadFlat
         default:
-          return HeadHome
+          return HeadUser
       }
     },
   },
