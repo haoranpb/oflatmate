@@ -20,7 +20,6 @@
       </p>
       <vf-input
         solid
-        trailer
         class="mt-3 w-5/6"
         v-if="options.type == 'dialog'"
         v-model="inputText"
