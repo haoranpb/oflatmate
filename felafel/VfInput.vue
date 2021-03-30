@@ -2,7 +2,7 @@
   <div :class="{ 'pb-5': status != 'danger' }">
     <input
       class="input"
-      type="text"
+      :type="type"
       autocomplete="off"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -27,6 +27,7 @@
 export default {
   props: {
     solid: { type: Boolean, default: false },
+    type: { type: String, default: 'text' },
     status: { type: String },
     message: { type: String },
     placeholder: { type: String },
