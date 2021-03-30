@@ -18,30 +18,12 @@
 <script>
 export default {
   props: {
-    warn: {
-      type: Boolean,
-      default: false,
-    },
-    danger: {
-      type: Boolean,
-      default: false,
-    },
-    plain: {
-      type: Boolean,
-      default: false,
-    },
-    simple: {
-      type: Boolean,
-      default: false,
-    },
-    primary: {
-      type: Boolean,
-      default: false,
-    },
-    large: {
-      type: Boolean,
-      default: false,
-    },
+    warn: { type: Boolean, default: false },
+    danger: { type: Boolean, default: false },
+    plain: { type: Boolean, default: false },
+    simple: { type: Boolean, default: false },
+    primary: { type: Boolean, default: false },
+    large: { type: Boolean, default: false },
   },
 }
 </script>
