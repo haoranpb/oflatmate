@@ -12,6 +12,7 @@
         'input-solid': solid,
         'input-simple': !solid,
         'input-danger': status == 'danger',
+        'cursor-not-allowed': disabled,
       }"
     />
     <p
