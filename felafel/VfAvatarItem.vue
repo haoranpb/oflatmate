@@ -9,14 +9,19 @@ export default {
       type: String,
       default: './user-circle-solid.svg',
     },
-    large: {
+    middle: {
       type: Boolean,
       default: false,
     },
   },
   computed: {
     sizeClass() {
-      return this.large ? ['h-24', 'w-24'] : ['h-8', 'w-8']
+      switch (true) {
+        case this.middle:
+          return ['h-14', 'w-14']
+        default:
+          return ['h-8', 'w-8']
+      }
     },
     avatarUrl() {
       return this.link ? this.link : '/user-circle-solid.svg'
