@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'pb-5': status != 'danger' }">
+  <div :class="{ 'pb-5': status != 'danger' && trailer }">
     <input
       class="input"
       :type="type"
@@ -14,6 +14,7 @@
       }"
     />
     <p
+      v-if="trailer"
       v-show="status"
       class="text-xs text-red-500 pt-1 h-5"
       :class="[status == 'danger' ? 'text-red-500' : 'text-primary-500']"
@@ -29,6 +30,7 @@ export default {
     solid: { type: Boolean, default: false },
     type: { type: String, default: 'text' },
     status: { type: String },
+    trailer: { type: Boolean, default: false },
     message: { type: String },
     placeholder: { type: String },
     modelValue: String,
