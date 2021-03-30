@@ -19,7 +19,7 @@ export default {
       return this.large ? ['h-24', 'w-24'] : ['h-8', 'w-8']
     },
     avatarUrl() {
-      return this.link ? this.link : './user-circle-solid.svg'
+      return this.link ? this.link : '/user-circle-solid.svg'
     },
   },
 }
