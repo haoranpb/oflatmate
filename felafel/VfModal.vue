@@ -51,7 +51,7 @@
 
 <script>
 import VfModalBase from './VfModalBase.vue'
-import { validateInput } from './utils.js'
+import { validateInput } from '@oflatmate/felafel'
 
 export default {
   data() {

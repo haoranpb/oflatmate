@@ -4,7 +4,8 @@
   "workspaces": [
     "functions",
     "src",
-    "felafel"
+    "felafel",
+    "utils"
   ],
   "scripts": {
     "ci": "yarn install --frozen-lockfile --ignore-engines",

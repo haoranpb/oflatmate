@@ -1,14 +1,14 @@
 {
-  "name": "@oflatmate/felafel",
-  "version": "0.4.0",
+  "name": "@oflatmate/utils",
+  "version": "0.0.1",
+  "description": "Utilities for oflatmate monorepo",
   "main": "index.js",
   "repository": "https://github.com/ludanxer/oflatmate",
   "author": "Haoran Sun",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "flatpickr": "^4.6.9",
-    "@oflatmate/utils": "0.0.1",
-    "vue-tippy": "^6.0.0-alpha.28"
+    "dompurify": "^2.2.7",
+    "validator": "^13.5.2"
   }
 }
