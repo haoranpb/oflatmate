@@ -5,6 +5,7 @@ import User from '@/views/User.vue'
 import Home from '@/views/Home.vue'
 import Flat from '@/views/Flat.vue'
 import Profile from '@/components/settings/Profile.vue'
+import Notification from '@/components/settings/Notification.vue'
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
             path: 'profile',
             name: 'profile',
             component: Profile,
+          },
+          {
+            path: 'notification',
+            name: 'notification',
+            component: Notification,
           },
         ],
       },
