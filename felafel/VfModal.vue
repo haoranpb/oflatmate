@@ -23,6 +23,7 @@
         class="mt-3 w-5/6"
         v-if="options.type == 'dialog'"
         v-model="inputText"
+        :type="options.dialog.validation.email ? 'email' : 'text'"
         :placeholder="options.dialog.placeholder"
         :status="input.status"
         :message="input.message"
