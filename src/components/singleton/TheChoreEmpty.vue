@@ -31,13 +31,14 @@
 
 <script>
 import { shuffle } from '@/utils'
+import { getCurrentYmd } from '@oflatmate/utils'
 
 export default {
   data() {
     return {
       unit: 'week',
       number: 2,
-      startDate: new Date(),
+      startDate: getCurrentYmd(),
     }
   },
   methods: {

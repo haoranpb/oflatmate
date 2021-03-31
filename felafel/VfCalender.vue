@@ -13,11 +13,12 @@
 // Safari doesn't have support
 import flatPickr from 'flatpickr'
 import 'flatpickr/dist/flatpickr.css'
+import { getCurrentYmd } from '@oflatmate/utils'
 
 export default {
   mounted() {
     flatPickr('#cal', {
-      defaultDate: new Date(),
+      defaultDate: getCurrentYmd(),
     })
   },
   props: ['modelValue'],

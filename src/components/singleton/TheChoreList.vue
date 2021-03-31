@@ -88,7 +88,7 @@ export default {
     diffByUnit() {
       // TODO: start.seconds is only available when fetching from firestore
       return dayjs().diff(
-        dayjs.unix(this.$store.getters.currentFlat.chore.start.seconds),
+        this.$store.getters.currentFlat.chore.start,
         this.$store.getters.currentFlat.chore.unit
       )
     },
@@ -110,6 +110,6 @@ export default {
 }
 
 .current {
-  @apply bg-yellow-100 bg-opacity-60;
+  @apply bg-primary-100 bg-opacity-60;
 }
 </style>
