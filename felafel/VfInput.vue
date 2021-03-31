@@ -4,6 +4,7 @@
       class="input"
       :type="type"
       :disabled="disabled"
+      v-bind="$attrs"
       autocomplete="off"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -27,6 +28,7 @@
 
 <script>
 export default {
+  inheritAttrs: false,
   props: {
     solid: { type: Boolean, default: false },
     type: { type: String, default: 'text' },
