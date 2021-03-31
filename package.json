@@ -9,15 +9,20 @@
   ],
   "scripts": {
     "ci": "yarn install --frozen-lockfile --ignore-engines",
-    "dev": "yarn workspace @oflatmate/src dev",
-    "build": "yarn workspace @oflatmate/src build",
-    "serve": "yarn workspace @oflatmate/src preview",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview --port=3000",
     "lint": "eslint src/**/*.{js,vue} felafel/*.{js,vue} functions/*.js utils/*.js *.js --fix",
     "emulate": "firebase emulators:start --import=./tmp-data --export-on-exit",
     "deploy:func": "firebase deploy --only functions",
     "env": "yarn env:unset && yarn env:set",
     "env:set": "firebase functions:config:set env=\"$(cat functions/env.json)\"",
     "env:unset": "firebase functions:config:unset env"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^1.1.5",
+    "@vue/compiler-sfc": "^3.0.7",
+    "vite": "^2.0.5"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
