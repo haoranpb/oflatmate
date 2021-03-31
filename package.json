@@ -12,7 +12,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview --port=3000",
-    "lint": "eslint src/**/*.{js,vue} felafel/*.{js,vue} functions/*.js *.js --fix",
+    "lint": "eslint src/**/*.{js,vue} felafel/*.{js,vue} functions/*.js utils/*.js *.js --fix",
     "emulate": "firebase emulators:start --import=./tmp-data --export-on-exit",
     "deploy:func": "firebase deploy --only functions",
     "env": "yarn env:unset && yarn env:set",
