@@ -2,13 +2,10 @@
   <div :class="{ 'pb-5': status != 'danger' }">
     <input
       class="input"
-      :type="type"
-      :disabled="disabled"
       v-bind="$attrs"
       autocomplete="off"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      :placeholder="placeholder"
       :class="{
         'input-solid': solid,
         'input-simple': !solid,
@@ -31,11 +28,8 @@ export default {
   inheritAttrs: false,
   props: {
     solid: { type: Boolean, default: false },
-    type: { type: String, default: 'text' },
-    disabled: { type: Boolean, default: false },
     status: { type: String },
     message: { type: String },
-    placeholder: { type: String },
     modelValue: String,
   },
   emits: ['update:modelValue'],
