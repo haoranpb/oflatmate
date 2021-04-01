@@ -10,7 +10,6 @@
         'input-solid': solid,
         'input-simple': !solid,
         'input-danger': status == 'danger',
-        'cursor-not-allowed': disabled,
       }"
     />
     <p
@@ -51,5 +50,9 @@ export default {
 
 .input-danger {
   @apply border-red-300 focus:border-red-500;
+}
+
+input:disabled {
+  @apply cursor-not-allowed;
 }
 </style>
