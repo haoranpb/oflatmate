@@ -2,36 +2,25 @@
   <div>
     <h2 class="text-2xl mb-4">Profile</h2>
 
-    <form autocomplete="off">
-      <label class="block">
-        <span class="text-gray-700 mb-1 block">Display name</span>
-        <vf-input
-          solid
-          :placeholder="$user.displayName"
-          v-model="username.content"
-          :status="username.status"
-          :message="username.message"
-          @keypress="clearDanger"
-        />
-      </label>
-      <label class="block">
-        <span class="text-gray-700 mb-1 block">Email address</span>
-        <vf-input
-          solid
-          disabled
-          type="email"
-          v-model="email"
-          :placeholder="$user.email"
-        />
-      </label>
+    <vf-form @submit="onSubmit" :validation-schema="profileSchema">
+      <vf-input
+        name="username"
+        :placeholder="$user.displayName"
+        label="Username"
+      />
+      <vf-input
+        disabled
+        type="email"
+        name="email"
+        label="Email address"
+        :placeholder="$user.email"
+      />
       <div class="flex flex-row space-x-2 pt-2">
         <div class="flex-grow"></div>
-        <!-- type="reset" does not clear binding -->
-        <vf-button type="button" @click="clearInput">Cancel</vf-button>
-        <!-- not sure how to custimize the submit action -->
-        <vf-button type="button" primary @click="updateProfile">Save</vf-button>
+        <vf-button type="reset">Reset</vf-button>
+        <vf-button primary>Save</vf-button>
       </div>
-    </form>
+    </vf-form>
 
     <div class="mt-4">
       <h3 class="text-red-600 font-bold text-xl">Delete Account</h3>
@@ -44,42 +33,28 @@
 </template>
 
 <script>
-import { validateInput } from '@oflatmate/utils'
+import { object, string } from 'yup'
 
 export default {
-  data() {
+  setup() {
+    // not reactive, no overhead
+    const profileSchema = object({
+      username: string().required().trim().max(25),
+    })
+
     return {
-      email: '',
-      username: {
-        content: '',
-        status: null,
-        message: null,
-      },
+      profileSchema,
     }
   },
   methods: {
-    clearInput() {
-      this.username.content = ''
-    },
-    clearDanger() {
-      this.username.status = null
-      this.username.message = null
-    },
-    updateProfile() {
-      const validResult = validateInput(this.username.content, { length: 25 })
-
-      if (validResult.error) {
-        this.username.status = 'danger'
-        this.username.message = validResult.message
-      } else {
-        this.$user
-          .updateProfile({
-            displayName: this.username.content,
-          })
-          .then(() => {
-            this.clearInput()
-          })
-      }
+    onSubmit(values, { resetForm }) {
+      this.$user
+        .updateProfile({
+          displayName: values.username,
+        })
+        .then(() => {
+          resetForm()
+        })
     },
     handleDelete() {
       this.$vfModal({
