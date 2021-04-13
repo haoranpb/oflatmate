@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "flatpickr": "^4.6.9",
     "@oflatmate/utils": "0.0.1",
+    "flatpickr": "^4.6.9",
+    "vee-validate": "^4.3.0",
     "vue-tippy": "^6.0.0-alpha.28"
   }
 }

@@ -1,51 +1,41 @@
 <template>
-  <div :class="{ 'pb-5': status != 'danger' }">
+  <Field v-slot="{ field, errorMessage }">
+    <label v-if="label" class="text-gray-700 mb-1 block">{{ label }}</label>
     <input
-      class="input"
-      v-bind="$attrs"
-      autocomplete="off"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      :class="{
-        'input-solid': solid,
-        'input-simple': !solid,
-        'input-danger': status == 'danger',
-      }"
+      v-bind="field"
+      :disabled="disabled"
+      :type="type"
+      :placeholder="placeholder"
+      class="input-solid"
+      :class="[errorMessage ? 'input-danger' : 'mb-6']"
     />
-    <p
-      v-show="status"
-      class="text-xs text-red-500 pt-1 h-5"
-      :class="[status == 'danger' ? 'text-red-500' : 'text-primary-500']"
-    >
-      {{ message }}
-    </p>
-  </div>
+    <span :class="{ 'text-red-500 h-5 text-xs': errorMessage }">
+      {{ errorMessage }}
+    </span>
+  </Field>
 </template>
 
 <script>
+import { Field } from 'vee-validate'
+
 export default {
-  inheritAttrs: false,
+  components: { Field },
   props: {
-    solid: { type: Boolean, default: false },
-    status: { type: String },
-    message: { type: String },
-    modelValue: String,
+    type: { type: String, default: 'text' },
+    placeholder: { type: String },
+    label: { type: String, default: null },
+    disabled: { type: Boolean, default: false },
   },
-  emits: ['update:modelValue'],
 }
 </script>
 
 <style scoped>
-.input {
+input {
   @apply block text-sm w-full shadow-sm rounded-md;
 }
 
 .input-solid {
   @apply bg-gray-100 border-transparent focus:border-primary-500 focus:bg-white focus:ring-0;
-}
-
-.input-simple {
-  @apply border-gray-300 focus:border-primary-500 focus:ring-primary-500;
 }
 
 .input-danger {

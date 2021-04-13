@@ -2,6 +2,7 @@ import VfTextarea from './VfTextarea.vue'
 import VfSelect from './VfSelect.vue'
 import VfModal from './VfModal.vue'
 import VfInput from './VfInput.vue'
+import VfForm from './VfForm.vue'
 import VfCalender from './VfCalender.vue'
 import VfButton from './VfButton.vue'
 import VfAvatarList from './VfAvatarList.vue'
@@ -17,6 +18,7 @@ export default {
     app.component('vf-button', VfButton)
     app.component('vf-calender', VfCalender)
     app.component('vf-input', VfInput)
+    app.component('vf-form', VfForm)
     app.component('vf-modal', VfModal)
     app.component('vf-select', VfSelect)
     app.component('vf-textarea', VfTextarea)
