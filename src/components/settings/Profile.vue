@@ -5,8 +5,8 @@
     <vf-form @submit="onSubmit" :validation-schema="profileSchema">
       <vf-input
         name="username"
-        :placeholder="$user.displayName"
         label="Username"
+        :placeholder="$user.displayName"
       />
       <vf-input
         disabled
@@ -25,15 +25,33 @@
     <div class="mt-4">
       <h3 class="text-red-600 font-bold text-xl">Delete Account</h3>
       <p>Once you delete your account, there is no going back.</p>
-      <vf-button class="mt-1" large warn @click="handleDelete">
+      <vf-button class="mt-1" large warn @click="deleteModal = true">
         Delete your account
       </vf-button>
     </div>
+
+    <vf-modal
+      warning
+      v-model="deleteModal"
+      title="Deactivate account"
+      icon="fas fa-exclamation-triangle"
+    >
+      <template #content>
+        <p class="text-sm text-gray-500">
+          Are you sure you want to deactivate your account? All of your data
+          will be permanently removed. This action cannot be undone.
+        </p>
+      </template>
+      <template #action>
+        <vf-button large danger @click="handleDelete">Deactivate</vf-button>
+      </template>
+    </vf-modal>
   </div>
 </template>
 
 <script>
 import { object, string } from 'yup'
+import { ref } from 'vue'
 
 export default {
   setup() {
@@ -42,8 +60,11 @@ export default {
       username: string().required().trim().max(25),
     })
 
+    const deleteModal = ref(false)
+
     return {
       profileSchema,
+      deleteModal,
     }
   },
   methods: {
@@ -57,29 +78,16 @@ export default {
         })
     },
     handleDelete() {
-      this.$vfModal({
-        title: 'Deactivate account',
-        icon: 'fa-exclamation-triangle',
-        type: 'warning',
-        content:
-          'Are you sure you want to deactivate your account? All of your data \
-          will be permanently removed. This action cannot be undone.',
-        action: {
-          title: 'Deactivate',
-          callback: () => {
-            this.$user
-              .delete()
-              .then(() => {
-                this.$store.commit('clearUser')
-                this.$router.push('/authentication')
-              })
-              .catch(() => {
-                // TODO: To delete a user, the user must have signed in recently.
-                // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
-              })
-          },
-        },
-      })
+      this.$user
+        .delete()
+        .then(() => {
+          this.$store.commit('clearUser')
+          this.$router.push('/authentication')
+        })
+        .catch(() => {
+          // TODO: To delete a user, the user must have signed in recently.
+          // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
+        })
     },
   },
 }

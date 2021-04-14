@@ -1,114 +1,48 @@
 <template>
-  <vf-modal-base v-if="showModal" :warning="isWarning">
-    <template #title>
-      <h3 class="text-lg leading-6 font-medium text-gray-900">
-        {{ options.title }}
-        <span class="text-primary-600 font-medium">
-          {{ options.titleTail }}
-        </span>
-      </h3>
-    </template>
-    <template #icon>
-      <i
-        class="fas"
-        :class="[isWarning ? 'text-red-500' : 'text-primary-500', options.icon]"
-      ></i>
-    </template>
-    <template #content>
-      <p class="text-sm text-gray-500" v-if="options.content">
-        {{ options.content }}
-      </p>
-      <vf-input
-        solid
-        class="mt-3 w-5/6"
-        v-if="options.type == 'dialog'"
-        v-model="inputText"
-        :type="options.dialog.validation.email ? 'email' : 'text'"
-        :placeholder="options.dialog.placeholder"
-        :status="input.status"
-        :message="input.message"
-        @keypress="clearDanger"
-      />
-    </template>
-    <template #action>
-      <vf-button
-        large
-        :danger="isWarning"
-        :primary="!isWarning"
-        @click="actionCallback"
-        class="sm:ml-3"
-      >
-        {{ options.action.title }}
-      </vf-button>
-    </template>
-    <template #close>
-      <vf-button simple large @click="closeModal" class="sm:ml-3">
+  <vf-modal-base v-if="modelValue">
+    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+      <div class="sm:flex sm:items-start">
+        <div
+          class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10"
+          :class="[warning ? 'bg-red-100' : 'bg-primary-100']"
+        >
+          <i :class="[warning ? 'text-red-500' : 'text-primary-500', icon]"></i>
+        </div>
+        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            {{ title }}
+          </h3>
+          <div class="mt-2">
+            <slot name="content"></slot>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+      <slot name="action"></slot>
+      <vf-button simple large @click="closeModal" class="sm:mr-3">
         Cancel
       </vf-button>
-    </template>
+    </div>
   </vf-modal-base>
 </template>
 
 <script>
 import VfModalBase from './VfModalBase.vue'
-import { validateInput } from '@oflatmate/utils'
 
 export default {
-  data() {
-    return {
-      showModal: false,
-      options: null,
-      inputText: '',
-      input: {
-        status: null,
-        message: null,
-      },
-    }
+  props: {
+    warning: { type: Boolean, default: false },
+    icon: { type: String, required: true },
+    title: { type: String, required: true },
+    modelValue: { type: Boolean, default: false },
   },
   components: { VfModalBase },
-  computed: {
-    isWarning() {
-      return this.options.type == 'warning'
-    },
-  },
+  emits: ['update:modelValue'],
   methods: {
-    handleModalOpen(e) {
-      this.options = e.detail
-      this.showModal = true
-    },
-    actionCallback() {
-      if (this.options.type == 'dialog') {
-        const validResult = validateInput(
-          this.inputText,
-          this.options.dialog.validation
-        )
-        if (validResult.error) {
-          this.input.status = 'danger'
-          this.input.message = validResult.message
-        } else {
-          this.options.action.callback(validResult)
-          this.inputText = ''
-          this.showModal = false
-        }
-      } else {
-        this.options.action.callback()
-        this.showModal = false
-      }
-    },
-    clearDanger() {
-      this.input.status = null
-      this.input.message = null
-    },
     closeModal() {
-      this.showModal = false
-      this.clearDanger()
+      this.$emit('update:modelValue', false)
     },
-  },
-  mounted() {
-    document.addEventListener('vfModal:open', this.handleModalOpen)
-  },
-  beforeUnmount() {
-    document.removeEventListener('vfModal:open', this.handleModalOpen)
   },
 }
 </script>

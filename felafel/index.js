@@ -22,12 +22,5 @@ export default {
     app.component('vf-modal', VfModal)
     app.component('vf-select', VfSelect)
     app.component('vf-textarea', VfTextarea)
-
-    app.config.globalProperties.$vfModal = (options) => {
-      // global event, not sure if there is a better way to do this
-      document.dispatchEvent(
-        new CustomEvent('vfModal:open', { detail: options })
-      )
-    }
   },
 }
