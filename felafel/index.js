@@ -7,6 +7,7 @@ import VfCalender from './VfCalender.vue'
 import VfButton from './VfButton.vue'
 import VfAvatarList from './VfAvatarList.vue'
 import VfAvatarItem from './VfAvatarItem.vue'
+import VfDialog from './VfDialog.vue'
 import 'tippy.js/dist/tippy.css'
 import 'tippy.js/themes/light.css'
 
@@ -20,6 +21,7 @@ export default {
     app.component('vf-input', VfInput)
     app.component('vf-form', VfForm)
     app.component('vf-modal', VfModal)
+    app.component('vf-dialog', VfDialog)
     app.component('vf-select', VfSelect)
     app.component('vf-textarea', VfTextarea)
   },
