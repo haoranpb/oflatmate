@@ -1,6 +1,9 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 const sgMail = require('@sendgrid/mail')
+const schedule = require('./schedule')
+
+exports.cleanInvitation = schedule.cleanInvitation
 
 let config, url
 // any better way to do this?
