@@ -7,8 +7,5 @@
   "author": "Haoran Sun",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-    "dompurify": "^2.2.7",
-    "validator": "^13.5.2"
-  }
+  "dependencies": {}
 }
