@@ -55,11 +55,9 @@ import { ref } from 'vue'
 
 export default {
   setup() {
-    // not reactive, no overhead
     const profileSchema = object({
       username: string().required().trim().max(25),
     })
-
     const deleteModal = ref(false)
 
     return {
