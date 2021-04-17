@@ -15,10 +15,19 @@
         label="Email address"
         :placeholder="$user.email"
       />
-      <div class="flex flex-row space-x-2 pt-2">
+
+      <div v-if="proviedByPass">
+        <span class="text-gray-700">Password</span>
+        <vf-button type="button" solid large class="ml-4" @click="pwdReset">
+          Reset your Password by email
+        </vf-button>
+      </div>
+      <vf-input v-else type="password" name="password" label="Password" />
+
+      <div class="mt-8 flex flex-row space-x-2 pt-2">
         <div class="flex-grow"></div>
-        <vf-button type="reset">Reset</vf-button>
-        <vf-button primary>Save</vf-button>
+        <vf-button large type="reset">Reset</vf-button>
+        <vf-button large primary>Save</vf-button>
       </div>
     </vf-form>
 
@@ -50,13 +59,18 @@
 </template>
 
 <script>
-import { object, string } from 'yup'
+import yuppass from 'yup-password'
+import * as yup from 'yup'
 import { ref } from 'vue'
+import { authProviders } from '@/firebaseConfig'
 
 export default {
   setup() {
-    const profileSchema = object({
-      username: string().required().trim().max(25),
+    yuppass(yup)
+
+    const profileSchema = yup.object({
+      username: yup.string().required().trim().max(25),
+      password: yup.string().password(),
     })
     const deleteModal = ref(false)
 
@@ -67,6 +81,19 @@ export default {
   },
   methods: {
     onSubmit(values, { resetForm }) {
+      if (values.password) {
+        const credential = authProviders.Email.credential(
+          this.$user.email,
+          values.password
+        )
+        this.$user.linkWithCredential(credential).then((usercred) => {
+          this.$store.commit('setUser', usercred.user)
+          // not sure why v-if is not re-render
+          this.$forceUpdate()
+          resetForm()
+        })
+      }
+
       this.$user
         .updateProfile({
           displayName: values.username,
@@ -86,6 +113,20 @@ export default {
           // TODO: To delete a user, the user must have signed in recently.
           // https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user
         })
+    },
+    pwdReset() {
+      this.$auth.sendPasswordResetEmail(this.$user.email).then(() => {
+        alert('Email sent')
+      })
+    },
+  },
+  computed: {
+    proviedByPass() {
+      return (
+        this.$user.providerData.find(
+          (provider) => provider.providerId == authProviders.Email.PROVIDER_ID
+        ) != undefined
+      )
     },
   },
 }

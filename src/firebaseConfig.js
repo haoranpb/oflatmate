@@ -25,10 +25,10 @@ if (import.meta.env.DEV) {
   db.useEmulator('localhost', emulators.firestore.port)
 }
 
-const authProviders = [
-  firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-]
+const authProviders = {
+  Email: firebase.auth.EmailAuthProvider,
+  Google: firebase.auth.GoogleAuthProvider,
+}
 
 const filedValDel = firebase.firestore.FieldValue.delete()
 
