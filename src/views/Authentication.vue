@@ -38,7 +38,9 @@ export default {
       // no auto refresh during login, but getCurrentUser in utils is still needed for user refresh
       signInFlow: 'popup',
       signInSuccessUrl: nextPath,
-      signInOptions: authProviders,
+      signInOptions: Object.values(authProviders).map(
+        (provider) => provider.PROVIDER_ID
+      ),
     })
   },
 }

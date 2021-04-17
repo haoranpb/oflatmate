@@ -18,7 +18,8 @@
     "vue-router": "^4.0.2",
     "vuedraggable": "^4.0.1",
     "vuex": "^4.0.0",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "yup-password": "^0.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.4",
