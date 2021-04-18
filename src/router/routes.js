@@ -1,7 +1,7 @@
 import { DEFAULT_SIGNIN_PATH } from '@/utils'
 import store from '@/store'
 import Layout from '@/others/Layout.vue'
-import User from '@/views/User.vue'
+import Setting from '@/views/Setting.vue'
 import Home from '@/views/Home.vue'
 import Flat from '@/views/Flat.vue'
 import Profile from '@/components/settings/Profile.vue'
@@ -18,9 +18,9 @@ const routes = [
         component: Home,
       },
       {
-        path: 'user',
-        name: 'user',
-        component: User,
+        path: 'setting',
+        name: 'setting',
+        component: Setting,
         meta: { requiresAuth: true },
         children: [
           {
