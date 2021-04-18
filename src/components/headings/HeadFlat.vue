@@ -74,7 +74,7 @@ export default {
   methods: {
     openModal({ currentTarget }) {
       this.modalOptions = this.getModalOption(currentTarget.id)
-      this.headModal = true
+      this.headModal = true // why does it work without `.value` ?
     },
     getModalOption(type) {
       switch (type) {
