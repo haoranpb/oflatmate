@@ -7,7 +7,7 @@ export default {
   props: {
     link: {
       type: String,
-      default: './user-circle-solid.svg',
+      default: '/user-circle-solid.svg',
     },
     middle: {
       type: Boolean,
