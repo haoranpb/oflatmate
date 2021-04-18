@@ -28,14 +28,21 @@ import { authProviders } from '@/firebaseConfig'
 
 export default {
   mounted() {
-    const ui = new firebaseui.auth.AuthUI(this.$auth)
+    const ui =
+      firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(this.$auth)
 
     const nextPath = this.$route.redirectedFrom
       ? this.$route.redirectedFrom.fullPath
       : DEFAULT_SIGNIN_PATH
 
+    /*
+      Set user in `signInSuccessWithAuthResult` callback won't help,
+      cuz there will be a refresh after authentication which will clear vuex,
+      even if there isn't, a user manual refresh will lost the state anyway
+    */
+
     ui.start('#firebaseui-auth-container', {
-      // no auto refresh during login, but getCurrentUser in utils is still needed for user refresh
       signInFlow: 'popup',
       signInSuccessUrl: nextPath,
       signInOptions: Object.values(authProviders).map(

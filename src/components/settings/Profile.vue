@@ -86,24 +86,25 @@ export default {
           this.$user.email,
           values.password
         )
-        this.$user.linkWithCredential(credential).then((usercred) => {
-          this.$store.commit('setUser', usercred.user)
-          // not sure why v-if is not re-render
-          this.$forceUpdate()
-          resetForm()
-        })
+        this.$auth.currentUser
+          .linkWithCredential(credential)
+          .then((usercred) => {
+            this.$store.commit('setUser', usercred.user)
+            resetForm()
+          })
       }
 
-      this.$user
+      this.$auth.currentUser
         .updateProfile({
           displayName: values.username,
         })
         .then(() => {
+          this.$store.commit('setUser', this.$auth.currentUser)
           resetForm()
         })
     },
     handleDelete() {
-      this.$user
+      this.$auth.currentUser
         .delete()
         .then(() => {
           this.$store.commit('clearUser')
