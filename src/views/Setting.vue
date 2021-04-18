@@ -1,5 +1,5 @@
 <template>
-  <div id="user" class="flex-col mx-20">
+  <div id="setting" class="flex-col mx-20">
     <div v-if="$user" class="flex flex-row ml-10 mb-10 space-x-10">
       <vf-avatar-item middle :link="$user.photoURL" />
       <div>
