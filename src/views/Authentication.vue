@@ -43,7 +43,6 @@ export default {
     */
 
     ui.start('#firebaseui-auth-container', {
-      signInFlow: 'popup',
       signInSuccessUrl: nextPath,
       signInOptions: Object.values(authProviders).map(
         (provider) => provider.PROVIDER_ID
