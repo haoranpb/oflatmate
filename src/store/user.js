@@ -9,8 +9,14 @@ const user = {
     }
   },
   mutations: {
-    setUser(state, newUser) {
-      state.user = newUser
+    setUser(state, fireUser) {
+      state.user = {
+        displayName: fireUser.displayName,
+        email: fireUser.email,
+        photoUrl: fireUser.photoUrl,
+        uid: fireUser.uid,
+        providerData: fireUser.providerData,
+      }
     },
     clearUser(state) {
       state.user = null

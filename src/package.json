@@ -11,14 +11,15 @@
     "@oflatmate/utils": "0.0.1",
     "@tailwindcss/forms": "^0.2.1",
     "dayjs": "^1.10.4",
-    "firebase": "^8.2.1",
-    "firebaseui": "^4.7.3",
+    "firebase": "^8.4.1",
+    "firebaseui": "^4.8.0",
     "tailwindcss": "^2.0.3",
     "vue": "^3.0.7",
     "vue-router": "^4.0.2",
     "vuedraggable": "^4.0.1",
     "vuex": "^4.0.0",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "yup-password": "^0.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.4",

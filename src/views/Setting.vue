@@ -1,5 +1,15 @@
 <template>
-  <div id="user" class="flex-col mx-20">
+  <div id="setting" class="flex-col mx-20">
+    <div v-if="$user" class="flex flex-row ml-10 mb-10 space-x-10">
+      <vf-avatar-item middle :link="$user.photoURL" />
+      <div>
+        <h2 class="text-xl font-medium">
+          {{ $user.displayName }}
+        </h2>
+        <p class="text-gray-600">{{ $user.email }}</p>
+      </div>
+    </div>
+
     <div class="flex flex-row w-full">
       <div class="w-80 pr-10">
         <h3 class="text-2xl font-bold ml-2 mb-4">Settings</h3>

@@ -13,11 +13,11 @@
       @click="open = false"
     >
       <router-link
-        to="/user/profile"
+        to="/setting/profile"
         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         role="menuitem"
       >
-        Your Profile
+        Settings
       </router-link>
       <button
         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
